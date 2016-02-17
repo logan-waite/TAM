@@ -1,5 +1,5 @@
 
 <?php
-    include 'views/includes/header.php';
+    include 'controllers/db_connect.php';
     include 'views/includes/footer.php';
 ?>
