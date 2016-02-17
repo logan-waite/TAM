@@ -1,0 +1,23 @@
+** Time Entries **
+
+entryID - date - startTime - endTime - clientID - projectID
+
+** Client **
+
+clientID - clientName - clientPhone - clientAddress
+
+** Project **
+
+projectID - projectName - projectPayRate
+
+** Billed **
+
+billedID - billedDate - billedAmount - paidStatus - paidDate - paidAmount
+
+** Notes **
+
+noteID - clientID - projectID - noteContent
+
+** Paid Status **
+
+paidStatusID - paidStatus

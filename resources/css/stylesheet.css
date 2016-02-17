@@ -1,0 +1,160 @@
+header {
+    text-align: center;
+    border-bottom: 1px solid #DADADA;
+    width: 100%;
+    font-family: fantasy, sans-serif;
+    margin-bottom: 5%;
+}
+
+#page-organizer {
+    width: 1000px;
+    padding-left: 10px;
+}
+
+.sub {
+    position: relative;
+    width: 100%;
+    border-top: 1px solid #DADADA;
+    margin: 5px;
+    padding-top: 12px;
+    padding-bottom: 6px;
+    font-size: 24px;
+}
+
+.main-header {
+    position: absolute;
+    top: 50px;
+    left: -50%;
+    margin-left: 50%;
+}
+.interior {
+    position: absolute;
+    width: 76%;
+    height: 100%;
+    top: 125px;
+    left: 50%;
+    margin-left: -38%;
+    padding: 10px;
+}
+
+/**********
+ Time Clock
+***********/
+.select-arrows {
+    position: absolute;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    color: white;
+    font-weight: bold;
+    top: 7px;
+}
+
+#client-arrow {
+    left: 80px;
+}
+
+#project-arrow {
+    left: 173px;
+}
+
+#clock-in {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-top: -17px;
+    margin-left: -130px;
+}
+
+.btn-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0px;
+    padding: 6px 18px 6px 12px;
+}
+
+#clock-out {
+    display:none;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-top: -17px;
+    margin-left: -94px;
+    width: 100%;
+}
+
+#clock-button {
+    float: left;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+#clock {
+    position: relative;
+    display: inline-block;
+    float:left;
+    padding: 0 5px;
+    border: 1px solid #CCC;
+    height: 34px;
+    font-size: 150%;
+}
+
+#current-project {
+    float: left;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    margin-left: -50%;
+    text-align: center;
+    width: 100%;
+    font-size: 1.25em;
+}
+
+#total-hours {
+    top: 15%;
+    left: -1%;
+}
+
+#project-wrapper {
+    position: relative;
+    top: 80px;
+}
+
+.alert-project {
+    padding: 5px;
+    margin: 0px;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #efefef;
+    border-radius: 2px;
+    border-color: #CCC;
+}
+
+.client-panel {
+    padding: 5px 0 5px 25px;
+}
+
+/****************
+	Clients and Projects
+*****************/
+#clients {
+	float: left;
+    margin: 0 5px;
+    width: 32%;
+}
+
+#projects {
+	float: left;
+    margin: 0 5px;
+    width: 32%;
+
+}
+
+#tools {
+    float: left;
+    margin: 0 5px;
+    width: 32%;
+}
