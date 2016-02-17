@@ -5,12 +5,12 @@
         <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
         <link rel='stylesheet' href='../resources/bootstrap/css/bootstrap.min.css' type="text/css">
-        <link rel="stylesheet" href="../../resources/bootstrap/css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" href="../resources/bootstrap/css/bootstrap-theme.min.css" type="text/css">
         <link rel="stylesheet" type="text/css" href="../resources/css/stylesheet.css">
-        <script src="../../resources/jquery/jquery-2.1.4.min.js"></script>
-        <script src="../../resources/jquery/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-        <script src="../../resources/bootstrap/js/jquery.min.js"></script>
-        <script src="../../resources/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../resources/jquery/jquery-2.1.4.min.js"></script>
+        <script src="../resources/jquery/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+        <script src="../resources/bootstrap/js/jquery.min.js"></script>
+        <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../controllers/main.js"></script>
     </head>
     <body>
