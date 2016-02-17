@@ -9,7 +9,7 @@
 		<header class="sub">
 			Clients
 		</header>
-		<div class="sidebar list-group">
+		<div class="list-group">
 			<a href="#" class="list-group-item">First Client</a>
 			<a href="#" class="list-group-item active">Another Client</a>
 			<a href="#" class="list-group-item">A Third Client</a>
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 	</div>
-    <div id='tools'>
+    <div id='cp-tools'>
         <header class='sub'>
             Tools
         </header>
@@ -94,3 +94,7 @@
         </div>
     </div>
 </div>
+
+<?php
+    include 'includes/footer.php';
+?>

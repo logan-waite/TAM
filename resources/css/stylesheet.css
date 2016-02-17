@@ -37,6 +37,10 @@ header {
     padding: 10px;
 }
 
+.navbar {
+    z-index: 1;
+}
+
 /**********
  Time Clock
 ***********/
@@ -153,8 +157,33 @@ header {
 
 }
 
-#tools {
+#cp-tools {
     float: left;
     margin: 0 5px;
     width: 32%;
+}
+
+/****************
+	Billing
+*****************/
+
+#b-tools {
+    float: right;
+    margin: 0 5px;
+    width: 110px;
+}
+
+#time-report {
+    float: left;
+    margin: 0 5px;
+}
+
+.report-item {
+    width: 250px;
+}
+
+.tool-btn {
+    width: 100px;
+    margin: 5px 10px;
+    white-space: normal;
 }
