@@ -1,12 +1,5 @@
 
 <?php
-    include 'views/includes/navbar.php';
+    include 'views/includes/header.php';
+    include 'views/includes/footer.php';
 ?>
-        
-        <div id='page-organizer'>
-        </div>
-        
-        <div class='footer'>
-        </div>
-    </body>
-</html>
