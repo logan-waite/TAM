@@ -10,3 +10,7 @@ function changePage(page, obj) {
     $("#page-organizer").load("views/" + page + ".html");
 }
 */
+
+jQuery(function($){
+   $("#phone_number").mask("(999) 999-9999");
+});

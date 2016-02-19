@@ -1,0 +1,11 @@
+** client_project table **
+fk_cp_clientID
+fk_cp_projectID
+
+** entry_note table **
+fk_en_entryID
+fk_en_noteID
+
+** invoice_entry table **
+fk_ie_invoiceID
+fk_ie_entryID

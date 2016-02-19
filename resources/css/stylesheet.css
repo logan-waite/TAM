@@ -163,6 +163,22 @@ header {
     width: 32%;
 }
 
+form {
+    width: 100%;
+}
+
+input {
+    margin: 5px;
+    border: 1px solid black;
+}
+
+textarea {
+    width: 70%;
+    margin: 10px;
+    border: 1px solid black;
+    resize: none;
+}
+
 /****************
 	Billing
 *****************/

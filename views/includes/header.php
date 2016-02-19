@@ -14,6 +14,7 @@
         <script src="../resources/jquery/jquery-ui-1.11.4/jquery-ui.min.js"></script>
         <script src="../resources/bootstrap/js/jquery.min.js"></script>
         <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../resources/js/jquery.maskedinput.js" type="text/javascript"></script>
         <script type="text/javascript" src="../controllers/main.js"></script>
     </head>
     <body>

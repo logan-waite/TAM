@@ -1,23 +1,47 @@
-** Time Entries **
+---
+Main Tables
+--
 
-entryID - date - startTime - endTime - clientID - projectID
+** clients **
 
-** Client **
+id - name - phone_number - address
 
-clientID - clientName - clientPhone - clientAddress
+** entries **
 
-** Project **
+id - date - start_time - end_time - cp_id
 
-projectID - projectName - projectPayRate
+** projects **
 
-** Billed **
+id - name - description - pay_rate
 
-billedID - billedDate - billedAmount - paidStatus - paidDate - paidAmount
+** invoices **
 
-** Notes **
+id - client_id - billed_date - amount - status_id
 
-noteID - clientID - projectID - noteContent
+** notes **
 
-** Paid Status **
+id - title - content - date_submitted
 
-paidStatusID - paidStatus
+** payment_statuses **
+
+id - status
+
+--
+Relation Tables
+--
+
+** client_project **
+
+id - client_id - project_id
+
+** entry_note **
+
+id - entry_id - note_id
+
+** invoice_entry **
+
+id - invoice_id - entry_id
+
+** payments **
+
+id - invoice_id - amount_paid

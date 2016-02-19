@@ -1,6 +1,20 @@
 <?php
+    $response = $_SERVER[QUERY_STRING];
+    switch ($response) {
+        case "nc=n":
+            $nc_pane = "in";
+            $nc_alert = "<p class='alert alert-warning'> Please fill in the phone number and/or the address</p>";
+        break;
+        default:
+            $nc_pane = "";
+            $nc_alert = "";
+
+    }
+
+
     include 'includes/header.php';
 ?>
+
 <header class='main-header'>
     <h1>Clients and Projects</h1>
 </header>
@@ -37,9 +51,21 @@
                   New Client
               </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body client-panel">
-
+            <div id="collapseOne" class="panel-collapse collapse <?=$nc_pane?>" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body tool-panel">
+                  <form action='../controllers/new_client.php' method='post'>
+                      <p>Please enter the client's name, and their phone number and/or mailing address.</p>
+                      <?=$nc_alert?>
+                      <label for='client_name'>Name: </label><br>
+                      <input type='text' id='client_name' placeholder='Google; John Smith' name='client_name' required></input><br>
+                      <label for='phone_number'>Phone Number: </label><br>
+                      <input type='text' id='phone_number' placeholder='Phone Number' name='phone_number'></input><br>
+                     <!-- <label for='address'>Mailing Address: </label><br>
+                      <input type='text' placeholder='Address' name='address'></input><br>-->
+                      <label for='email'>Email: </label><br>
+                      <input <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder='Email' name='email'></input><br>
+                      <input type='submit' class='btn btn-primary'value="Submit">
+                  </form>
               </div>
             </div>
           </div>
@@ -50,8 +76,13 @@
               </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-              <div class="panel-body client-panel">
-
+              <div class="panel-body tool-panel">
+                  <form>
+                      <input type='text' placeholder='Project Title' name='project_title'>
+                      <textarea placeholder='Description' name='description'></textarea>
+                      <input type='text' placeholder="Pay Rate" name='pay_rate'>
+                      <input type='submit' class='btn btn-primary'value="Submit">
+                  </form>
               </div>
             </div>
           </div>
@@ -62,7 +93,7 @@
               </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body client-panel">
+              <div class="panel-body tool-panel">
 
               </div>
             </div>
@@ -74,7 +105,7 @@
               </h4>
             </div>
             <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-              <div class="panel-body client-panel">
+              <div class="panel-body tool-panel">
 
               </div>
             </div>
@@ -86,7 +117,7 @@
               </h4>
             </div>
             <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-              <div class="panel-body client-panel">
+              <div class="panel-body tool-panel">
 
               </div>
             </div>

@@ -1,9 +1,9 @@
 <?php
 
 $user = 'root';
-$password = 'S3r3nity';
+$password = 'root';
 $db = 'PAT';
-$host = '73.3.75.122';
+$host = 'localhost';
 //$port = 8889;
 
 $link = mysqli_connect("$host", "$user", "$password", "$db");
