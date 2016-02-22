@@ -4,7 +4,7 @@ $user = 'root';
 $password = 'root';
 $db = 'PAT';
 $host = 'localhost';
-//$port = 8889;
+$port = 8888;
 
 $link = mysqli_connect("$host", "$user", "$password", "$db");
 
@@ -14,6 +14,6 @@ if (!$link) {
     echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
     exit;
 } else {
-    echo "Connected!";
+    //echo "Connected!";
 }
 ?>

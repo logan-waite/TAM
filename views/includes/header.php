@@ -1,5 +1,5 @@
 <?php
-    include 'controllers/db_connect.php';
+    include '../controllers/db_connect.php';
 ?>
 <html>
     <head>

@@ -174,7 +174,7 @@ input {
 
 textarea {
     width: 70%;
-    margin: 10px;
+    margin: 5px;
     border: 1px solid black;
     resize: none;
 }
