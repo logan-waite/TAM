@@ -1,5 +1,29 @@
 <?php
-    include '../controllers/db_connect.php';
+    //require_once ('../../controllers/db_connect.php');
+    $page = trim(substr($title, 4));
+    $tc_active = "";
+    $cp_active = "";
+    $b_active = "";
+
+    if ($page === "Time Clock")
+    {
+        $tc_active = "class='active'";
+        $cp_active = "";
+        $b_active = "";
+    }
+    elseif ($page == "Clients and Projects")
+    {
+        $tc_active = "";
+        $cp_active = "class='active'";
+        $b_active = "";
+    }
+    elseif ($page == "Billing")
+    {
+        $tc_active = "";
+        $cp_active = "";
+        $b_active = "class='active'";
+    }
+
 ?>
 <html>
     <head>
@@ -16,6 +40,7 @@
         <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
         <script src="../resources/js/jquery.maskedinput.js" type="text/javascript"></script>
         <script type="text/javascript" src="../controllers/main.js"></script>
+        <title><?=$title?></title>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -34,9 +59,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li id='time_clock' class="active"><a href="time_clock.php">Time Clock<span class="sr-only">(current)</span></a></li>
-                        <li id='clients_projects'><a href="clients_projects.php">Clients and Projects</a></li>
-                        <li id='billing'><a href="billing.php">Billing</a></li>
+                        <li id='time_clock' <?=$tc_active?>><a href="time_clock.php">Time Clock</a></li>
+                        <li id='clients_projects'<?=$cp_active?>><a href="clients_projects.php">Clients and Projects</a></li>
+                        <li id='billing'<?=$b_active?>><a href="billing.php">Billing</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

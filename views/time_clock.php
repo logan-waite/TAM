@@ -1,4 +1,6 @@
 <?php
+    $title = "PAT: Time Clock";
+
     include 'includes/header.php';
 ?>
 

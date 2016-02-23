@@ -1,5 +1,16 @@
 <?php
-    $response = $_SERVER[QUERY_STRING];
+    $title = "PAT: Clients and Projects";
+    $response = '';
+
+    if (!empty($_SERVER['QUERY_STRING'])) {
+        $response = $_SERVER['QUERY_STRING'];
+    } else {
+        $nc_pane = "";
+        $nc_alert = "";
+        $np_pane = "";
+        $np_alert = "";
+    }
+
     switch ($response) {
         case "nc=n":
             $nc_pane = "in";
@@ -8,10 +19,12 @@
         case "np=n":
             $np_pane = "in";
             $np_alert = "<p class='alert alert-warning'> All fields are required. </p>";
+        break;
         default:
-            $nc_pane = "";
-            $nc_alert = "";
-
+        $nc_pane = "";
+        $nc_alert = "";
+        $np_pane = "";
+        $np_alert = "";
     }
 
 
@@ -56,19 +69,9 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse <?=$nc_pane?>" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body tool-panel">
-                  <form action='../controllers/new_client.php' method='post'>
-                      <p>Please enter the client's name, and their phone number and/or mailing address.</p>
-                      <?=$nc_alert?>
-                      <label for='client_name'>Name: </label><br>
-                      <input type='text' id='client_name' placeholder='Google; John Smith' name='client_name' required></input><br>
-                      <label for='phone_number'>Phone Number: </label><br>
-                      <input type='text' id='phone_number' placeholder='Phone Number' name='phone_number'></input><br>
-                     <!-- <label for='address'>Mailing Address: </label><br>
-                      <input type='text' placeholder='Address' name='address'></input><br>-->
-                      <label for='email'>Email: </label><br>
-                      <input <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder='Email' name='email'></input><br>
-                      <input type='submit' class='btn btn-primary'value="Submit">
-                  </form>
+                  <?php
+                        include 'clients_projects/new_client_form.php';
+                   ?>
               </div>
             </div>
           </div>
@@ -78,17 +81,11 @@
                   New Project
               </h4>
             </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div id="collapseTwo" class="panel-collapse collapse <?=$np_pane?>" role="tabpanel" aria-labelledby="headingTwo">
               <div class="panel-body tool-panel">
-                  <form action='../controllers/new_project.php' method='post'>
-                      <label for='project_title'>Project Title: </label><br>
-                      <input type='text' placeholder='Project Title' name='project_title' id='project_title'><br>
-                      <label for='description'>Description: </label><br>
-                      <textarea placeholder='Description' name='description' id='description'></textarea><br>
-                      <label for='pay_rate'>Pay Rate ($): </label><br>
-                      <input type='text' placeholder="Pay Rate" name='pay_rate' id='pay_rate'><br>
-                      <input type='submit' class='btn btn-primary'value="Submit">
-                  </form>
+                  <?php
+                        include 'clients_projects/new_project_form.php';
+                   ?>
               </div>
             </div>
           </div>
@@ -100,7 +97,9 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
               <div class="panel-body tool-panel">
-
+                  <?php
+                        include 'clients_projects/project_to_client_form.php';
+                   ?>
               </div>
             </div>
           </div>

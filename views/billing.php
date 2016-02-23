@@ -1,4 +1,6 @@
 <?php
+    $title = "PAT: Billing";
+
     include 'includes/header.php';
 ?>
 

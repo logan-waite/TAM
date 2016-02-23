@@ -172,6 +172,11 @@ input {
     border: 1px solid black;
 }
 
+select {
+    margin: 5px;
+    border: 1px solid black;
+}
+
 textarea {
     width: 70%;
     margin: 5px;
