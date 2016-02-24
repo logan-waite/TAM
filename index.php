@@ -1,4 +1,11 @@
 <html>
+<?php
+    if (!empty($_SERVER['QUERY_STRING'])) {
+        $invalid = "<p class='alert alert-danger'> Invalid username or password</p>";
+    } else {
+        $invalid = "";
+    }
+ ?>
     <head>
         <link rel='stylesheet' href='resources/bootstrap/css/bootstrap.min.css' type="text/css">
         <style>
@@ -65,7 +72,8 @@
                 Login
             </header>
 
-            <form action="login.php" method='post'>
+            <form action="controllers/login.php" method='post'>
+                <?=$invalid?>
                 <div class='form-group'>
                     <label for='username'>Username: </label> <input type="text" id="username" class='form-control' name='username'>
                 </div>
@@ -73,7 +81,7 @@
                     <label for='password'>Password: </label> <input type="password" id="password" class='form-control' name='password'>
                 </div>
                 <input type="submit" value="Submit" class='btn btn-default'> <br><br>
-                Don't have an account yet? <a href="new_user.html">Click Here</a>
+                Don't have an account yet? <a href="views/login/new_user.php">Click Here</a>
 
             </form>
         </div>

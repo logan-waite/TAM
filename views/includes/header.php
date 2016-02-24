@@ -1,5 +1,11 @@
 <?php
     //require_once ('../../controllers/db_connect.php');
+/*
+    session_start();
+    if(empty($_SESSION['user'])) {
+        header("Location: ../index.php");
+    }
+*/
     $page = trim(substr($title, 4));
     $tc_active = "";
     $cp_active = "";

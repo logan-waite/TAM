@@ -1,6 +1,8 @@
 <?php
 	include 'db_connect.php';
 
+	session_start();
+
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$firstName = '';
@@ -8,7 +10,7 @@
 	$usersQuery = mysqli_query($link, "SELECT * FROM tr10_users");
 
 	$valid = false;
-	
+
 	while ($user = mysqli_fetch_array($usersQuery)) {
 		if ($username == $user['username']) {
 			$valid = true;
@@ -16,13 +18,12 @@
 		}
 	}
 	if (!$valid) {
-		echo "Invalid username and/or password.</br>
-			If you haven't made a user yet, please <a href='new_user.html'>click here</a>. <br>
-			Otherwise, <a href='index.html'>click here</a> to go back to the main page.";
+		$_SESSION['user'] = "Logan";
+		//header("Location: ../index.php?n");
 	} else {
 		echo "<script>
 				window.location.href = 'main.html?userID=".$userID."';
 			</script>";
 	}
-	
+
 ?>
