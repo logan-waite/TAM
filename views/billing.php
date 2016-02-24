@@ -12,9 +12,9 @@
         <header class="sub">
             Clients
         </header>
-        <div class="list-group">
+        <div id='client-list' class="list-group">
             <a href="#" class="list-group-item">First Client</a>
-            <a href="#" class="list-group-item active">Another Client</a>
+            <a href="#" class="list-group-item">Another Client</a>
             <a href="#" class="list-group-item">A Third Client</a>
             <a href="#" class="list-group-item">An Important Client</a>
         </div>

@@ -1,11 +1,16 @@
 <?php
     include '../resources/db_connect.php';
 
+    function assign_project_to_client() {
+
+    }
+
     function delete_client()
     {
 
     }
-    function get_all_clients()
+
+    function get_all_clients()  // Returns an array containing all the clients in the database
     {
 
     }

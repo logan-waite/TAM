@@ -30,7 +30,7 @@
             <option value='2'>Project 2</option>
             <option value='3'>Project 3</option>
         </select>
-            <input type="submit" value="Clock In"class="btn btn-success">
+            <input type="submit" value="Clock In" class="btn btn-success" style='margin-top: 0;'>
     </form>
     <div id="current-project">
         Sample Project goes here

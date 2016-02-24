@@ -1,5 +1,5 @@
-<form action='project_to_client.php' method='post'>
-    <center>
+<center>
+    <form action='project_to_client.php' method='post'>
         <select name='project'>
             <option value='0'>Select Project</option>
         </select>
@@ -7,5 +7,5 @@
             <option value='0'>Select Client</option>
         </select>
         <input class='btn btn-primary' type='submit' value='Submit'>
-    </center>
-</form>
+    </form>
+</center>
