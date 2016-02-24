@@ -40,8 +40,13 @@
         <script src="../resources/bootstrap/js/jquery.min.js"></script>
         <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
         <script src="../resources/js/jquery.maskedinput.js" type="text/javascript"></script>
+<<<<<<< Updated upstream
         <script type="text/javascript" src="../controllers/views.js"></script>
         <title><?=$title?></title>
+=======
+        <script type="text/javascript" src="../controllers/main.js"></script>
+        <title>PAT</title>
+>>>>>>> Stashed changes
     </head>
     <body>
         <nav class="navbar navbar-default">
