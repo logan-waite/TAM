@@ -1,5 +1,5 @@
 <?php
-    include '../models/client_model.php'
+    include '../models/client_model.php';
 
     $client = trim(filter_input(INPUT_POST, 'client', FILTER_SANITIZE_STRING));
 

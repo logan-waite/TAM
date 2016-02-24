@@ -1,6 +1,6 @@
 <center>
     <div id='project_alert'></div>
-    <form action='../../controllers/delete_project.php'>
+    <form action='../controllers/clients_projects/delete_project.php'>
         <select id='delete_p'>
             <option value='0'>Select Project</option>
             <option>ChangeTest</option>

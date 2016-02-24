@@ -13,11 +13,11 @@
             <button type="button" id="clock-button" class="btn btn-danger">Clock out</button>
         <div id="clock"> 99:99:99 </div>
     </div>
-    <form id='clock-in'>
+    <form id='clock-in' action='../controllers/time_clock/clock_in.php' method='post'>
         <div class='select-arrows' id='client-arrow'>
             <>
         </div>
-        <select id='choose-client' class="btn btn-info btn-select"><span class="caret"></span>
+        <select id='choose-client' name='choose-client' class="btn btn-info btn-select"><span class="caret"></span>
             <option value='1'>This Client</option>
             <option value='2'>This Client</option>
             <option value='3'>This Client</option>
@@ -25,7 +25,7 @@
         <div class='select-arrows' id='project-arrow'>
             <>
         </div>
-        <select id="choose-project" class="btn btn-info btn-select">
+        <select id="choose-project" name='choose-project' class="btn btn-info btn-select">
             <option value='1'>Project 1</option>
             <option value='2'>Project 2</option>
             <option value='3'>Project 3</option>

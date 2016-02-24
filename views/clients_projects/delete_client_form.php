@@ -1,6 +1,6 @@
 <center>
     <div id='client_alert'></div>
-    <form action='../../controllers/delete_client.php'>
+    <form action='../controllers/clients_projects/delete_client.php'>
         <select id='delete_c'>
             <option value='0'>Select Client</option>
             <option>ChangeTest</option>

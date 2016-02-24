@@ -1,5 +1,5 @@
 <?php
-    include '../models/project_model.php'
+    include '../models/project_model.php';
 
     $project = trim(filter_input(INPUT_POST, 'project', FILTER_SANITIZE_STRING));
 

@@ -1,4 +1,4 @@
-<form action='../controllers/new_project.php' method='post'>
+<form action='../controllers/clients_projects/new_project.php' method='post'>
     <?=$np_alert?>
     <label for='project_title'>Project Title: </label><br>
     <input type='text' placeholder='Project Title' name='project_title' id='project_title'><br>
