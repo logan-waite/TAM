@@ -1,14 +1,12 @@
+body {
+    background-color: #fcfcfc; /*ghostwhite = #f8f8ff, mintcream = #f5fffa*/
+}
 header {
     text-align: center;
     border-bottom: 1px solid #DADADA;
     width: 100%;
     font-family: fantasy, sans-serif;
     margin-bottom: 5%;
-}
-
-#page-organizer {
-    width: 1000px;
-    padding-left: 10px;
 }
 
 .sub {
@@ -77,6 +75,7 @@ header {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    background-image: ; /* Create background image for select to standardize view across browsers*/
     margin: 0px;
     padding: 6px 18px 6px 12px;
 }
@@ -183,7 +182,7 @@ header {
     padding: 5px 10px;
     line-height: 1.5em;
     color: #555;
-
+    background-color: white;
 }
 
 .sort-tabs i {

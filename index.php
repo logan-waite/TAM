@@ -1,5 +1,5 @@
 <html>
-<?php
+<?php    
     if (!empty($_SERVER['QUERY_STRING'])) {
         $invalid = "<p class='alert alert-danger'> Invalid username or password</p>";
     } else {

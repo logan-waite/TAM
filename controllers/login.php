@@ -1,29 +1,46 @@
 <?php
-	include 'db_connect.php';
-
+	include '../resources/db_connect.php';
+/*
 	session_start();
+	$_SESSION['user'] = "Logan";
+*/
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$firstName = '';
 	$lastName = '';
-	$usersQuery = mysqli_query($link, "SELECT * FROM tr10_users");
+	$invalid = true;
 
-	$valid = false;
+	$user_query_string = "
+		SELECT username, password
+		FROM users
+	";
 
-	while ($user = mysqli_fetch_array($usersQuery)) {
-		if ($username == $user['username']) {
-			$valid = true;
-			$userID = $user['userID'];
+	$user_query = $link->query($user_query_string);
+
+	$user = $user_query->fetch();
+
+	if (!$user)
+	{
+		$invalid = true;
+	}
+	else
+	{
+		if ($user['password'] != $password)
+		{
+			$invalid = true;
+		}
+		else
+		{
+			$invalid = false;
 		}
 	}
-	if (!$valid) {
-		$_SESSION['user'] = "Logan";
-		//header("Location: ../index.php?n");
+
+
+	if ($invalid) {
+		header("Location: ../index.php?n");
 	} else {
-		echo "<script>
-				window.location.href = 'main.html?userID=".$userID."';
-			</script>";
+		echo "Logged in!";
 	}
 
 ?>

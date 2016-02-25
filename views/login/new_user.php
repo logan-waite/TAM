@@ -1,49 +1,34 @@
 <html>
     <head>
         <link rel='stylesheet' href='../../resources/bootstrap/css/bootstrap.min.css' type="text/css">
+        <link rel='stylesheet' href='../../resources/css/stylesheet.css' type="text/css">
+        <script src='../../resources/jquery/jquery-2.1.4.min.js'></script>
+        <script>
+        $(document).ready(function() {
+            $('#confirm-password').blur(function() {
+                var password = $('#password').val();
+                var password2 = $('#confirm-password').val();
+
+                if (password != password2) {
+                    $('#confirm-alert').html(
+                        "<p class='alert alert-warning'>Passwords must match</p>"
+                    );
+                } else {
+                    $('#confirm-alert').html(
+                        ""
+                    );
+                }
+
+            });
+        })
+        </script>
         <style>
-        header {
-            text-align: center;
-            border-bottom: 1px solid #DADADA;
-            width: 100%;
-            font-family: fantasy, sans-serif;
-            margin-bottom: 5%;
-        }
-
-        #page-organizer {
-            width: 1000px;
-            padding-left: 10px;
-        }
-
         .sub {
-            position: relative;
-            width: 100%;
-            border-bottom: 0;
-            margin: 0px;
-            padding-top: 12px;
-            padding-bottom: 6px;
-            font-size: 24px;
+            border: none;
             margin-bottom: 15px;
-
         }
 
-        .main-header {
-            position: absolute;
-            top: 50px;
-            left: -50%;
-            margin-left: 50%;
-        }
-        .interior {
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            top: 125px;
-            left: 50%;
-            margin-left: -25%;
-            padding: 10px;
-        }
-
-        .interior form {
+        form {
             position: relative;
             left: 50%;
             margin-left: -150px;
@@ -53,6 +38,10 @@
             padding: 10px;
             border-radius: 8px;
             box-shadow: 3px 3px 3px #AAA;
+        }
+        input {
+            margin: 0;
+            border: none;
         }
         </style>
     </head>
@@ -67,22 +56,23 @@
 
             <form action="../../controllers/new_user.php" method='post'>
 				<div class='form-group'>
-                    <label for='username'>Name: </label> <input type="text" id="username" class='form-control' name='username'>
+                    <label for='username'>Name: </label> <input type="text" id="name" class='form-control' name='name'>
                 </div>
 				<div class='form-group'>
-					<label for='username'>Email: </label> <input type="text" id="username" class='form-control' name='username'>
+					<label for='username'>Email: </label> <input type="text" id="email" class='form-control' name='email'>
 				</div>
 				<div class='form-group'>
-					<label for='username'>Company (Optional): </label> <input type="text" id="username" class='form-control' name='username'>
+					<label for='username'>Company (Optional): </label> <input type="text" id="company" class='form-control' name='company'>
 				</div>
 				<div class='form-group'>
 					<label for='username'>Username: </label> <input type="text" id="username" class='form-control' name='username'>
 				</div>
+                <div id='confirm-alert'></div>
                 <div class='form-group'>
                     <label for='password'>Password: </label> <input type="password" id="password" class='form-control' name='password'>
                 </div>
 				<div class='form-group'>
-					<label for='password'> Confirm Password: </label> <input type="password" id="password" class='form-control' name='password'>
+					<label for='password'> Confirm Password: </label> <input type="password" id="confirm-password" class='form-control'>
 				</div>
                 <input type="submit" value="Submit" class='btn btn-default'> <br><br>
             </form>

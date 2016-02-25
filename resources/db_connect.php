@@ -6,14 +6,25 @@ $db = 'PAT';
 $host = 'localhost';
 $port = 8888;
 
-$link = mysqli_connect("$host", "$user", "$password", "$db");
+try {
+    $link = new PDO(
+        "mysql:host=$host;dbname=$db",
+        "$user",
+        "$password"
+    );
 
-if (!$link) {
-    echo "Error: Unable to connect to MySQL." . PHP_EOL;
-    echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-    echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
-    exit;
-} else {
-    //echo "Connected!";
-}
+    $link->setAttribute(
+        PDO::ATTR_ERRMODE,
+        PDO::ERRMODE_EXCEPTION
+    );
+
+    $link->setAttribute(
+        PDO::ATTR_DEFAULT_FETCH_MODE,
+        PDO::FETCH_ASSOC
+    );
+
+    } catch (Exception $error) {
+        echo "Cannot connect to the database.<br>";
+    }
+
 ?>

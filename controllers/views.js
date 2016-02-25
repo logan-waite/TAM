@@ -11,10 +11,13 @@ function changePage(page, obj) {
 }
 */
 var alerts = [
-    "<p class='alert alert-danger'>Are you sure you want to delete this? This cannot be undone!</p>"
+    "<p class='alert alert-danger'>Are you sure you want to delete this? This cannot be undone!</p>",
+    "<p class='alert alert-warning'>Passwords must match</p>"
 ]
 
 $(document).ready(function() {
+    console.log("here!");
+
     $("#phone_number").mask("(999) 999-9999");
 
     $('#delete_p').change(function() {
