@@ -46,9 +46,9 @@
         <script src="../resources/bootstrap/js/jquery.min.js"></script>
         <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
         <script src="../resources/js/jquery.maskedinput.js" type="text/javascript"></script>
-        <script type="text/javascript" src="../controllers/views.js"></script>
+        <script type="text/javascript" src="../resources/js/views.js"></script>
         <title><?=$title?></title>
-        <script type="text/javascript" src="../controllers/main.js"></script>
+        <script type="text/javascript" src="../resources/js/main.js"></script>
         <title>PAT</title>
     </head>
     <body>
