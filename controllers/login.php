@@ -7,8 +7,6 @@
 
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-	$firstName = '';
-	$lastName = '';
 	$invalid = true;
 
 	$user_query_string = "

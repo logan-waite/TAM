@@ -9,10 +9,11 @@
 </header>
 
 <div class='interior'>
-    <div id='clock-out'>
-            <button type="button" id="clock-button" class="btn btn-danger">Clock out</button>
-        <div id="clock"> 99:99:99 </div>
-    </div>
+    <form id='clock-out' action='../controllers/clock_out.php' method='post'>
+        <input type="submit" id="clock-button" class="btn btn-danger" value='Clock Out'></iinput>
+        <input type='hidden' value='23:59:59' name='time'>
+        <div id="clock"> 23:59:59 </div>
+    </form>
     <form id='clock-in' action='../controllers/time_clock/clock_in.php' method='post'>
         <div class='select-arrows' id='client-arrow'>
             <>

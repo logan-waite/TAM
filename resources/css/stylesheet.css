@@ -41,6 +41,9 @@ header {
     z-index: 1;
 }
 
+.panel-heading {
+    cursor: pointer;
+}
 /**********
  Time Clock
 ***********/
@@ -81,7 +84,7 @@ header {
 }
 
 #clock-out {
-    display:none;
+    display: none;
     position: absolute;
     top: 35px;
     left: 50%;
@@ -92,6 +95,7 @@ header {
 
 #clock-button {
     float: left;
+    margin: 0px;
 }
 
 .btn {
@@ -183,6 +187,7 @@ header {
     line-height: 1.5em;
     color: #555;
     background-color: white;
+    cursor: pointer;
 }
 
 .sort-tabs i {
@@ -212,6 +217,10 @@ textarea {
     margin: 5px;
     border: 1px solid black;
     resize: none;
+}
+
+#interval {
+    visibility: hidden;
 }
 
 /****************
