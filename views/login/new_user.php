@@ -108,8 +108,15 @@
                     if (submitEmail == true && submitPassword == true)
                     {
                         var data = $('#new-user').serialize();
-                        console.log(data);
-                        $.post('../../controllers/new_user.php', data);
+                        $.post('../../controllers/new_user.php', data, function(result) {
+                            if (result == 'true') {
+                                window.location.href='../../index.php';
+                            }
+                            else
+                            {
+                                console.log("Something went wrong with the database insertion!");    
+                            }
+                        });
                     }
                 } else {
                     if (name.length == 0) {

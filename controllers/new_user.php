@@ -1,5 +1,5 @@
 <?php
-	//include 'db_connect.php';
+	include '../models/user_model.php';
 
 
 	$name = trim(filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING));
@@ -19,8 +19,6 @@
     $confirmAlert = "c";
     $alert = "n=";
 
-    echo "recieved!";
-
     if (!empty($name) && !empty($email) && !empty($username) && !empty($password) && !empty($password2)) 
     {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
@@ -38,8 +36,18 @@
         if (!$submitEmail || !$submitPassword) 
         {
             header("Location: ../views/login/new_user.php?{$alert}");
-        } else {
-            // submit to model
+        } 
+        else 
+        {
+            $result = create_user($name, $email, $company, $username, $password);
+            if ($result) 
+            {
+                echo "true";
+            }
+            else
+            {
+                echo "false";
+            }
         }
     }
     else
