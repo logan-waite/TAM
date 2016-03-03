@@ -117,7 +117,9 @@
                             {
                                 if (result == '1062') {
                                     $('#username').before(alerts[6]);
-                                } 
+                                } else {
+                                    console.log(result);
+                                }
                             }
                         });
                     }

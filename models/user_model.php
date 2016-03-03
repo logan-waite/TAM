@@ -12,6 +12,7 @@
         global $db;
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        echo $hashed_password." ";
         $full_name = explode(" ", $name);
         $first_name = trim($full_name[0]);
         $last_name = trim($full_name[1]);
@@ -41,20 +42,51 @@
         }
     }
 
-    function delete_user() {
+    function delete_user() 
+    {
         
     }
 
-    function get_all_users() {
+    function get_all_users() 
+    {
         
     }
 
-    function get_user() {
+    function get_user() 
+    {
         
     }
 
-    function update_user() {
+    function get_user_password($user = NULL) 
+    {
+        if ($name = NULL)
+        {
+            throw new Exception ("No user was submitted!");
+        }
+
+        global $db;
+
+        $query = "SELECT password 
+                    FROM users 
+                    WHERE username = :user";
+
+        $result = $db->prepare($query);
+        $result->execute(
+            array(
+                "user" => $user
+            )
+        );
+        $info = $result->fetch();;
+        return trim($info['password']);
+    }
+
+    function update_user() 
+    {
         
     }
+
+    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
+    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
+    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
 
 ?>

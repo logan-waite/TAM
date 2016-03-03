@@ -1,11 +1,14 @@
 <?php
-	include '../../resources/db_connect.php';
+	include '../../models/user_model.php';
 
 	session_start();
 
+    // Get user inpuots
 	$username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
 	$password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
+    $invalid = true;
     
+    // If either field is empty, return false
     if (empty($username) || empty($password))
     {
 		header("Location: ../../index.php?n");
@@ -16,19 +19,9 @@
         $invalid = false;
     }
 
+    // attempt to get password from database
     try {
-        $user_query = "
-            SELECT username, password
-            FROM users
-            WHERE username = :username
-            ";
-
-        $results = $db->prepare($user_query);
-        $results->execute(
-            array(
-                "username" => $username
-            )
-        );
+        $user_password = get_user_password($username);
     }
     catch (Exception $e)
     {
@@ -37,28 +30,19 @@
         exit;
     }
 
-    if (empty($results->fetch()))
+    if (empty($user_password))
     {
 		header("Location: ../../index.php?n");
         exit;
     }
-    $user_info = $results->fetch();
-
-		if (password_verify($password, $user_info['password']))
-		{
-			$invalid = true;
-		}
-		else
-		{
-			$invalid = false;
-		}
-
-
-	if ($invalid) {
+    var_dump(password_verify('logan', '$2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e'));
+	
+    /*
+	if (!$valid) {
 		header("Location: ../../index.php?n");
 	} else {
         $_SESSION['user'] = $username;
         header("Location: ../../views/time_clock.php");
 	}
-
+*/
 ?>
