@@ -26,6 +26,8 @@ id - title - content - date_submitted
 
 id - status
 
+** users **
+
 --
 Relation Tables
 --

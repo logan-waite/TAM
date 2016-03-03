@@ -5,7 +5,16 @@
 
 	$username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
 	$password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
-	$invalid = true;
+    
+    if (empty($username) || empty($password))
+    {
+		header("Location: ../../index.php?n");
+        exit;
+    }
+    else
+    {
+        $invalid = false;
+    }
 
     try {
         $user_query = "
@@ -25,8 +34,14 @@
     {
         error_log("This happened: ".$e);
         header("Location: ../../index.php?n");
+        exit;
     }
 
+    if (empty($results->fetch()))
+    {
+		header("Location: ../../index.php?n");
+        exit;
+    }
     $user_info = $results->fetch();
 
 		if (password_verify($password, $user_info['password']))
