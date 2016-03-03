@@ -12,12 +12,13 @@
         }
         
         $alert_array = [
-            'name'              => "<p class='alert alert-warning'>Please enter your full name.</p>",
-            'email'             => "<p class='alert alert-warning'>Please enter a valid email address.</p>",
-            'username'          => "<p class='alert alert-warning'>Please enter a username.</p>",
-            'password'          => "<p class='alert alert-warning'>Please enter a valid password.</p>",
-            'confirm-password'  => "<p class='alert alert-warning'>Please confirm your password.</p>",
-            'matching'          => "<p class='alert alert-warning'>Passwords must match.</p>"
+            'name'                  => "<p class='alert alert-warning'>Please enter your full name.</p>",
+            'email'                 => "<p class='alert alert-warning'>Please enter a valid email address.</p>",
+            'username'              => "<p class='alert alert-warning'>Please enter a username.</p>",
+            'password'              => "<p class='alert alert-warning'>Please enter a valid password.</p>",
+            'confirm-password'      => "<p class='alert alert-warning'>Please confirm your password.</p>",
+            'matching'              => "<p class='alert alert-warning'>Passwords must match.</p>",
+            'duplicate-username'    => "<p class='alert alert-warning'>Username already exists!</p>"
         ];
         
         $alert_codes = str_split($response);
@@ -108,13 +109,15 @@
                     if (submitEmail == true && submitPassword == true)
                     {
                         var data = $('#new-user').serialize();
-                        $.post('../../controllers/new_user.php', data, function(result) {
+                        $.post('../../controllers/user/new_user.php', data, function(result) {
                             if (result == 'true') {
                                 window.location.href='../../index.php';
                             }
                             else
                             {
-                                console.log("Something went wrong with the database insertion!");    
+                                if (result == '1062') {
+                                    $('#username').before(alerts[6]);
+                                } 
                             }
                         });
                     }
@@ -174,7 +177,7 @@
                 New User
             </header>
 
-            <form action="../../controllers/new_user.php" method='post' id='new-user'>
+            <form action="../../controllers/user/new_user.php" method='post' id='new-user'>
 				<div class='form-group'>
                     <label for='username'>Full Name: </label><?=$name_alert?> <input type="text" id="name" class='form-control' name='name'>
                 </div>

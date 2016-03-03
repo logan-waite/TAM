@@ -72,7 +72,7 @@
                 Login
             </header>
 
-            <form action="controllers/login.php" method='post'>
+            <form action="controllers/user/login.php" method='post'>
                 <?=$invalid?>
                 <div class='form-group'>
                     <label for='username'>Username: </label> <input type="text" id="username" class='form-control' name='username'>

@@ -40,13 +40,13 @@
         else 
         {
             $result = create_user($name, $email, $company, $username, $password);
-            if ($result) 
+            if (strpos($result, "1062"))
             {
-                echo "true";
+                echo "1062";
             }
             else
             {
-                echo "false";
+                echo true;
             }
         }
     }

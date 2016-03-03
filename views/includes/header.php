@@ -1,11 +1,16 @@
 <?php
     //require_once ('../../controllers/db_connect.php');
-/*
+
     session_start();
-    if(empty($_SESSION['user'])) {
+    if (!isset($_SESSION['user'])) 
+    {
         header("Location: ../index.php");
     }
-*/
+    else 
+    {
+        $user = $_SESSION['user'];
+    }
+
     $page = trim(substr($title, 4));
     $tc_active = "";
     $cp_active = "";
@@ -71,6 +76,13 @@
                         <li id='time_clock' <?=$tc_active?>><a href="time_clock.php">Time Clock</a></li>
                         <li id='clients_projects'<?=$cp_active?>><a href="clients_projects.php">Clients and Projects</a></li>
                         <li id='billing'<?=$b_active?>><a href="billing.php">Billing</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$user?><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="../controllers/user/logout.php">Logout</a></li>
+                            </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
