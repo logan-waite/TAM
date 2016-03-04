@@ -4,18 +4,22 @@
 
     function create_user($name = NULL, $email = NULL, $company = NULL, $username = NULL, $password = NULL) 
     {
-        if ($name == NULL || $email == NULL || $username == NULL || $password = NULL)
+
+        if ($name == NULL || $email == NULL || $username == NULL || $password == NULL)
         {
             throw new Exception ("Missing information to add new user!");
         }
-        
-        global $db;
 
+        global $db;
+              
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        echo $hashed_password." ";
         $full_name = explode(" ", $name);
         $first_name = trim($full_name[0]);
         $last_name = trim($full_name[1]);
+        
+        //error_log('password');
+        error_log(password_verify('password', $hashed_password));
+        
         try 
         {
             $query = "INSERT INTO users
@@ -76,7 +80,7 @@
                 "user" => $user
             )
         );
-        $info = $result->fetch();;
+        $info = $result->fetch();
         return trim($info['password']);
     }
 
@@ -85,8 +89,8 @@
         
     }
 
-    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
-    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
-    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
+//    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
+//    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
+//    $2y$10$hG1ngAzAqom5mYxegjukTeLPMjf0Lf5MmZw58oupGwd9/fqtPN03e
 
 ?>

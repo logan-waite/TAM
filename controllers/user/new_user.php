@@ -46,7 +46,7 @@
             }
             else
             {
-                echo true;
+                echo 'true';
             }
         }
     }
