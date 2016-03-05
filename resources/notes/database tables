@@ -4,7 +4,7 @@ Main Tables
 
 ** clients **
 
-id - name - phone_number - address
+id - name - phone_number - address - email
 
 ** entries **
 

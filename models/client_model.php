@@ -1,9 +1,5 @@
 <?php
-    include '../resources/db_connect.php';
-
-    function assign_project_to_client() {
-
-    }
+    include '../../resources/db_connect.php';
 
     function delete_client()
     {
@@ -12,6 +8,22 @@
 
     function get_all_clients()  // Returns an array containing all the clients in the database
     {
+        global $db;
+        
+        try 
+        {
+            $query = "SELECT id, name
+                    FROM clients";
+            $result = $db->prepare($query);
+            $result->execute();
+        
+            return $result->fetchAll();  
+        }
+        catch (Exception $e)
+        {
+            error_log("Database error: $e");
+            return 0;
+        }
 
     }
 
@@ -20,34 +32,36 @@
 
     }
 
-    function new_client($client_name, $phone_number, $email)
+    function new_client($client_name = NULL, $phone_number = NULL, $email = NULL)
     {
-        /* Prepared statement, stage 1: prepare */
-        if (!($stmt = mysqli_prepare($link, "INSERT INTO clients(name, phone_number, email) VALUES (?)")))
+        if ($client_name == NULL || ($phone_number == NULL && $email == NULL))
         {
-            echo "Prepare failed: ";
-            echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
-            echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+            throw new Exception ("We are missing information! Client: {$client_name}; Phone: {$phone_number}; Email: {$email}");
         }
-        echo "let's insert stuff!";
-
-        /* Prepared statement, stage 2: bind and execute
-        if (!$stmt->bind_param("s", $client_name))
-        {
-            echo "Binding parameters failed for {$client_name}: (" . $stmt->errno . ") " . $stmt->error;
+        
+        global $db;
+        
+        try {
+            $query = "INSERT INTO clients
+                        (name, phone_number, email)
+                        VALUES
+                        (:name, :phone_number, :email)";
+            $result = $db->prepare($query);
+            $result->execute(
+                array(
+                    "name" => $client_name,
+                    "phone_number" => $phone_number,
+                    "email" => $email
+                )
+            );
+            return 1;
         }
-        elseif (!$stmt->bind_param("s", $phone_number))
+        catch (Exception $e)
         {
-            echo "Binding parameters failed for {$phone_number}: (" . $stmt->errno . ") " . $stmt->error;
+            error_log("Database Error: $e");
+            return 0;
         }
-        elseif (!$stmt->bind_param("s", $email))
-        {
-            echo "Binding parameters failed for {$email}: (" . $stmt->errno . ") " . $stmt->error;
-        }
-        else
-        {
-                echo "Prep complete!";
-        } */
+        
     }
 
     function update_client()

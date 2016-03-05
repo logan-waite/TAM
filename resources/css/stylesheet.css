@@ -45,6 +45,12 @@ header {
 .panel-heading {
     cursor: pointer;
 }
+
+#alert-box {
+    float:right;
+    margin: -10px 25px;
+}
+
 /**********
  Time Clock
 ***********/

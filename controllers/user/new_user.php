@@ -35,7 +35,7 @@
         
         if (!$submitEmail || !$submitPassword) 
         {
-            header("Location: ../views/login/new_user.php?{$alert}");
+            header("Location: ../views/user/new_user.php?{$alert}");
         } 
         else 
         {
@@ -77,7 +77,7 @@
             $alert .= $password2Alert;
         }
         
-        header("Location: ../views/login/new_user.php?{$alert}");
+        header("Location: ../views/user/new_user.php?{$alert}");
     }
 
 ?>

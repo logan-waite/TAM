@@ -1,9 +1,19 @@
 <html>
 <?php    
-    if (!empty($_SERVER['QUERY_STRING'])) {
-        $invalid = "<p class='alert alert-danger'> Invalid username or password</p>";
-    } else {
-        $invalid = "";
+    if (!empty($_SERVER['QUERY_STRING'])) 
+    {
+        if ($_SERVER['QUERY_STRING'] == "y") 
+        {
+            $alert = "<p class='alert alert-success'>New user created. Please Login</p>";
+        }
+        else
+        {
+            $alert = "<p class='alert alert-danger'> Invalid username or password</p>";
+        }
+    } 
+    else 
+    {
+        $alert = "";
     }
  ?>
     <head>
@@ -73,7 +83,7 @@
             </header>
 
             <form action="controllers/user/login.php" method='post'>
-                <?=$invalid?>
+                <?=$alert?>
                 <div class='form-group'>
                     <label for='username'>Username: </label> <input type="text" id="username" class='form-control' name='username'>
                 </div>
@@ -81,7 +91,7 @@
                     <label for='password'>Password: </label> <input type="password" id="password" class='form-control' name='password'>
                 </div>
                 <input type="submit" value="Submit" class='btn btn-default'> <br><br>
-                Don't have an account yet? <a href="views/login/new_user.php">Click Here</a>
+                Don't have an account yet? <a href="views/user/new_user.php">Click Here</a>
 
             </form>
         </div>

@@ -1,5 +1,5 @@
 <?php
-    include '../models/client_model.php';
+    include '../../models/client_model.php';
 
     $client_name = trim(filter_input(INPUT_POST, 'client_name', FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH));
     $phone_number = trim(filter_input(INPUT_POST, 'phone_number', FILTER_SANITIZE_STRING));
@@ -11,7 +11,17 @@
     }
     else
     {
-        new_client($client_name, $phone_number, $email);
+        $success = new_client($client_name, $phone_number, $email);
+        
+        if ($success)
+        {
+            header("Location: ../../views/clients_projects.php?ac=y");
+        }
+        else
+        {
+            header("Location:../../views/clients_projects.php?ac=n");
+        }
+        
     }
 
  ?>

@@ -17,8 +17,6 @@
         $first_name = trim($full_name[0]);
         $last_name = trim($full_name[1]);
         
-        //error_log('password');
-        error_log(password_verify('password', $hashed_password));
         
         try 
         {

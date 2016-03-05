@@ -111,7 +111,7 @@
                         var data = $('#new-user').serialize();
                         $.post('../../controllers/user/new_user.php', data, function(result) {
                             if (result == 'true') {
-                                window.location.href='../../index.php';
+                                window.location.href='../../index.php?y';
                             }
                             else
                             {

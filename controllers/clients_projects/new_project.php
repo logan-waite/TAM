@@ -13,7 +13,16 @@
     }
     else
     {
-        new_project($project_title, $description, $pay_rate);
+        $success = new_project($project_title, $description, $pay_rate);
+        
+        if ($success)
+        {
+            header("Location: ../../views/clients_projects.php?ap=y");
+        }
+        else
+        {
+            header("Location:../../views/clients_projects.php?ap=n");
+        }
     }
 
 

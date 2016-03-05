@@ -8,7 +8,6 @@
 	$password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
     $invalid = true;
 
-    error_log($password);
     
     // If either field is empty, return false
     if (empty($username) || empty($password))

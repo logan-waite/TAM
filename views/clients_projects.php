@@ -15,16 +15,17 @@
         case "nc=n":
             $nc_pane = "in";
             $nc_alert = "<p class='alert alert-warning'> Please fill in the phone number and/or the address</p>";
-        break;
+            break;
         case "np=n":
             $np_pane = "in";
             $np_alert = "<p class='alert alert-warning'> All fields are required. </p>";
-        break;
+            break;
         default:
         $nc_pane = "";
         $nc_alert = "";
         $np_pane = "";
         $np_alert = "";
+        $float_alert = $_SERVER['QUERY_STRING'];
     }
 
 
