@@ -1,4 +1,6 @@
 <?php
+    $title = "PAT: Billing";
+
     include 'includes/header.php';
 ?>
 
@@ -10,11 +12,8 @@
         <header class="sub">
             Clients
         </header>
-        <div class="list-group">
-            <a href="#" class="list-group-item">First Client</a>
-            <a href="#" class="list-group-item active">Another Client</a>
-            <a href="#" class="list-group-item">A Third Client</a>
-            <a href="#" class="list-group-item">An Important Client</a>
+        <div id='client-list' class="list-group">
+            
         </div>
     </div>
     <div id="time-report">

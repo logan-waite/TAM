@@ -1,3 +1,7 @@
+
+body {
+    background-color: #fcfcfc; /*ghostwhite = #f8f8ff, mintcream = #f5fffa*/
+}
 header {
     text-align: center;
     border-bottom: 1px solid #DADADA;
@@ -6,19 +10,16 @@ header {
     margin-bottom: 5%;
 }
 
-#page-organizer {
-    width: 1000px;
-    padding-left: 10px;
-}
-
 .sub {
     position: relative;
     width: 100%;
     border-top: 1px solid #DADADA;
-    margin: 5px;
+    margin: 0px;
     padding-top: 12px;
     padding-bottom: 6px;
     font-size: 24px;
+    margin-bottom: 5px;
+
 }
 
 .main-header {
@@ -39,6 +40,15 @@ header {
 
 .navbar {
     z-index: 1;
+}
+
+.panel-heading {
+    cursor: pointer;
+}
+
+#alert-box {
+    float:right;
+    margin: -10px 25px;
 }
 
 /**********
@@ -75,12 +85,13 @@ header {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    background-image: ; /* Create background image for select to standardize view across browsers*/
     margin: 0px;
     padding: 6px 18px 6px 12px;
 }
 
 #clock-out {
-    display:none;
+    display: none;
     position: absolute;
     top: 35px;
     left: 50%;
@@ -91,6 +102,7 @@ header {
 
 #clock-button {
     float: left;
+    margin: 0px;
 }
 
 .btn {
@@ -116,16 +128,19 @@ header {
     text-align: center;
     width: 100%;
     font-size: 1.25em;
+    visibility: hidden;
 }
 
 #total-hours {
     top: 15%;
-    left: -1%;
 }
 
 #project-wrapper {
     position: relative;
     top: 80px;
+    left: 50%;
+    margin-left: -25%;
+    width: 50%;
 }
 
 .alert-project {
@@ -147,22 +162,78 @@ header {
 #clients {
 	float: left;
     margin: 0 5px;
-    width: 32%;
+    width: 31%;
 }
 
 #projects {
 	float: left;
     margin: 0 5px;
-    width: 32%;
+    width: 31%;
 
 }
 
 #cp-tools {
     float: left;
     margin: 0 5px;
-    width: 32%;
+    width: 31%;
 }
 
+.sort-tabs {
+    margin: 0px;
+    margin-top: -6px;
+    margin-bottom: 10px;
+}
+
+.sort-tabs div {
+    width: 49%;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 5px 10px;
+    line-height: 1.5em;
+    color: #555;
+    background-color: white;
+    cursor: pointer;
+}
+
+.sort-tabs i {
+    font-size: 12px;
+}
+
+.sort-tabs .active {
+    background-color: #d9edf7;
+}
+
+form {
+    width: 100%;
+}
+
+input {
+    margin: 5px;
+    border: 1px solid black;
+}
+
+select {
+    margin: 5px;
+    border: 1px solid black;
+}
+
+textarea {
+    width: 70%;
+    margin: 5px;
+    border: 1px solid black;
+    resize: none;
+}
+
+#interval {
+    visibility: hidden;
+}
+
+#client-list .list-group-item {
+    cursor: pointer;
+}
 /****************
 	Billing
 *****************/
@@ -183,7 +254,7 @@ header {
 }
 
 .tool-btn {
-    width: 100px;
-    margin: 5px 10px;
+    width: 100%;
+    margin: 5px 0px;
     white-space: normal;
 }

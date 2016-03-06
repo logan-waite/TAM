@@ -1,6 +1,37 @@
 <?php
+    $title = "PAT: Clients and Projects";
+    $response = '';
+
+    if (!empty($_SERVER['QUERY_STRING'])) {
+        $response = $_SERVER['QUERY_STRING'];
+    } else {
+        $nc_pane = "";
+        $nc_alert = "";
+        $np_pane = "";
+        $np_alert = "";
+    }
+
+    switch ($response) {
+        case "nc=n":
+            $nc_pane = "in";
+            $nc_alert = "<p class='alert alert-warning'> Please fill in the phone number and/or the address</p>";
+            break;
+        case "np=n":
+            $np_pane = "in";
+            $np_alert = "<p class='alert alert-warning'> All fields are required. </p>";
+            break;
+        default:
+        $nc_pane = "";
+        $nc_alert = "";
+        $np_pane = "";
+        $np_alert = "";
+        $float_alert = $_SERVER['QUERY_STRING'];
+    }
+
+
     include 'includes/header.php';
 ?>
+
 <header class='main-header'>
     <h1>Clients and Projects</h1>
 </header>
@@ -9,21 +40,24 @@
 		<header class="sub">
 			Clients
 		</header>
-		<div class="list-group">
-			<a href="#" class="list-group-item">First Client</a>
-			<a href="#" class="list-group-item active">Another Client</a>
-			<a href="#" class="list-group-item">A Third Client</a>
-			<a href="#" class="list-group-item">An Important Client</a>
+        <div id='client-sort' class='sort-tabs'>
+            <div class='active'>All Clients <i class='fa fa-chevron-down'></i></div>
+            <div>Recent <i class='fa fa-chevron-down'></i></div>
+        </div>
+		<div id='client-list' class="list-group">
+
 		</div>
 	</div>
 	<div id="projects">
 		<header class="sub">
 			Projects
 		</header>
-		<div class="list-group">
-			<div class="list-group-item">
-				An easy project
-			</div>
+        <div id='project-sort' class='sort-tabs'>
+            <div  class='active'>All Projects <i class='fa fa-chevron-down'></i></div>
+            <div>Recent <i class='fa fa-chevron-down'></i></div>
+        </div>
+		<div id='project-list' class="list-group">
+
 		</div>
 	</div>
     <div id='cp-tools'>
@@ -37,9 +71,11 @@
                   New Client
               </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body client-panel">
-
+            <div id="collapseOne" class="panel-collapse collapse <?=$nc_pane?>" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body tool-panel">
+                  <?php
+                        include 'clients_projects/new_client_form.php';
+                   ?>
               </div>
             </div>
           </div>
@@ -49,9 +85,11 @@
                   New Project
               </h4>
             </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-              <div class="panel-body client-panel">
-
+            <div id="collapseTwo" class="panel-collapse collapse <?=$np_pane?>" role="tabpanel" aria-labelledby="headingTwo">
+              <div class="panel-body tool-panel">
+                  <?php
+                        include 'clients_projects/new_project_form.php';
+                   ?>
               </div>
             </div>
           </div>
@@ -62,8 +100,10 @@
               </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body client-panel">
-
+              <div class="panel-body tool-panel">
+                  <?php
+                        include 'clients_projects/project_to_client_form.php';
+                   ?>
               </div>
             </div>
           </div>
@@ -74,8 +114,10 @@
               </h4>
             </div>
             <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-              <div class="panel-body client-panel">
-
+              <div class="panel-body tool-panel">
+                  <?php
+                        include 'clients_projects/delete_project_form.php';
+                   ?>
               </div>
             </div>
           </div>
@@ -86,8 +128,10 @@
               </h4>
             </div>
             <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-              <div class="panel-body client-panel">
-
+              <div class="panel-body tool-panel">
+                  <?php
+                        include 'clients_projects/delete_client_form.php';
+                   ?>
               </div>
             </div>
           </div>
