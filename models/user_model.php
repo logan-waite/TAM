@@ -54,9 +54,72 @@
         
     }
 
-    function get_user() 
+    // Returns Array containing user information.
+    // Second Parameter determines which single field to return, default is everything
+    function get_user_info($username = NULL, $info = NULL) 
     {
+        if ($username == NULL)
+        {
+            throw new Exception ("No username passed to get_user_info");
+        }
+        global $db;
+        $field = "*";
         
+        switch ($info) 
+        {
+            case 'id':
+                $field = "id";
+                break;
+            case 'name':
+                $field = 'first_name, last_name';
+                break;
+            case 'first_name';
+                $field = 'first_name';
+                break;
+            case 'last_name':
+                $field = 'last_name';
+                break;
+            case 'email':
+                $field = 'email';
+                break;
+            case 'company':
+                $field = 'company';
+                break;
+            case 'username':
+                $field = 'username';
+                break;
+            case 'password':
+                $field = 'password';
+                break;
+            default:
+                $field = '*';
+                break;
+        }
+        
+        $query = "SELECT {$field} 
+                    FROM users
+                    WHERE username = :username";
+        
+        $result = $db->prepare($query);
+        $result->execute(
+            array(
+                "username" => $username
+            )
+        );
+        $user_info = $result->fetch();
+        
+        if ($info == 'name') 
+        {
+            return $user_info['first_name'] . " " . $user_info['last_name'];
+        }
+        else if ($info = NULL)
+        {
+            return $user_info;
+        }
+        else
+        {
+            return $user_info[$field];
+        }
     }
 
     function get_user_password($user = NULL) 

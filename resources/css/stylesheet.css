@@ -162,20 +162,20 @@ header {
 #clients {
 	float: left;
     margin: 0 5px;
-    width: 32%;
+    width: 31%;
 }
 
 #projects {
 	float: left;
     margin: 0 5px;
-    width: 32%;
+    width: 31%;
 
 }
 
 #cp-tools {
     float: left;
     margin: 0 5px;
-    width: 32%;
+    width: 31%;
 }
 
 .sort-tabs {
@@ -231,6 +231,9 @@ textarea {
     visibility: hidden;
 }
 
+#client-list .list-group-item {
+    cursor: pointer;
+}
 /****************
 	Billing
 *****************/

@@ -1,9 +1,33 @@
 <?php
     include '../../resources/db_connect.php';
+    session_start();
 
-    function delete_client()
+    function delete_client($client_id = NULL)
     {
-
+        if ($client_id == NULL)
+        {
+            throw new Exception("NULL client_id passed into delete_client!");
+        }
+        
+        global $db;
+        
+        try
+        {
+            $query = "DELETE FROM clients
+                        WHERE id = :client_id";
+            $result = $db->prepare($query);
+            $result->execute(
+                array(
+                    "client_id" => $client_id
+                )
+            );
+            return 1;
+        }
+        catch (Exception $e)
+        {
+            error_log("Database error: $e");
+            return 0;
+        }
     }
 
     function get_all_clients()  // Returns an array containing all the clients in the database
@@ -13,10 +37,14 @@
         try 
         {
             $query = "SELECT id, name
-                    FROM clients";
+                    FROM clients
+                    WHERE user_id = :user_id";
             $result = $db->prepare($query);
-            $result->execute();
-        
+            $result->execute(
+                array(
+                    "user_id" => $_SESSION['user_id']
+                )
+            );
             return $result->fetchAll();  
         }
         catch (Exception $e)
@@ -25,6 +53,38 @@
             return 0;
         }
 
+    }
+
+    function get_client_projects($client_id = NULL)
+    {
+        if ($client_id == NULL)
+        {
+            throw new Exception ('Invalid client_id passed into get_client_projects');
+        }
+        
+        global $db;
+        
+        try
+        {
+            $query = "SELECT projects.name
+                        FROM client_project
+                        JOIN projects
+                            ON client_project.project_id = projects.id
+                        WHERE client_id = :client_id";
+            $result = $db->prepare($query);
+            $result->execute(
+                array(
+                    "client_id" => $client_id
+                )
+            );
+            
+            return $result->fetchAll();
+        }
+        catch (Exception $e)
+        {
+            error_log("Database error: $e");
+            return 0;
+        }
     }
 
     function get_specific_client()
@@ -43,15 +103,16 @@
         
         try {
             $query = "INSERT INTO clients
-                        (name, phone_number, email)
+                        (name, phone_number, email, user_id)
                         VALUES
-                        (:name, :phone_number, :email)";
+                        (:name, :phone_number, :email, :user_id)";
             $result = $db->prepare($query);
             $result->execute(
                 array(
                     "name" => $client_name,
                     "phone_number" => $phone_number,
-                    "email" => $email
+                    "email" => $email,
+                    "user_id" => $_SESSION['user_id']
                 )
             );
             return 1;

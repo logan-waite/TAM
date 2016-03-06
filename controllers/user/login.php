@@ -42,6 +42,8 @@
 	if (!$valid) {
 		header("Location: ../../index.php?n");
 	} else {
+        $user_id = get_user_info($username, 'id');
+        $_SESSION['user_id'] = $user_id; 
         $_SESSION['user'] = $username;
         header("Location: ../../views/time_clock.php");
 	}

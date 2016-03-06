@@ -40,29 +40,24 @@
 		<header class="sub">
 			Clients
 		</header>
-        <div class='sort-tabs'>
+        <div id='client-sort' class='sort-tabs'>
             <div class='active'>All Clients <i class='fa fa-chevron-down'></i></div>
             <div>Recent <i class='fa fa-chevron-down'></i></div>
         </div>
 		<div id='client-list' class="list-group">
-			<a href="#" class="list-group-item">First Client</a>
-			<a href="#" class="list-group-item">Another Client</a>
-			<a href="#" class="list-group-item">A Third Client</a>
-			<a href="#" class="list-group-item">An Important Client</a>
+
 		</div>
 	</div>
 	<div id="projects">
 		<header class="sub">
 			Projects
 		</header>
-        <div class='sort-tabs'>
+        <div id='project-sort' class='sort-tabs'>
             <div  class='active'>All Projects <i class='fa fa-chevron-down'></i></div>
             <div>Recent <i class='fa fa-chevron-down'></i></div>
         </div>
-		<div class="list-group">
-			<div class="list-group-item">
-				An easy project
-			</div>
+		<div id='project-list' class="list-group">
+
 		</div>
 	</div>
     <div id='cp-tools'>

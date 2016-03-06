@@ -13,10 +13,7 @@
             Clients
         </header>
         <div id='client-list' class="list-group">
-            <a href="#" class="list-group-item">First Client</a>
-            <a href="#" class="list-group-item">Another Client</a>
-            <a href="#" class="list-group-item">A Third Client</a>
-            <a href="#" class="list-group-item">An Important Client</a>
+            
         </div>
     </div>
     <div id="time-report">

@@ -1,11 +1,26 @@
 <?php
-    include '../models/client_model.php';
+    include '../../models/client_model.php';
 
-    $client = trim(filter_input(INPUT_POST, 'client', FILTER_SANITIZE_STRING));
+    $client_id = trim(filter_input(INPUT_POST, 'client', FILTER_SANITIZE_STRING));
 
-    // $clients = get_all_clients();
-    // If received client is in the returned array, continue;
-    // Get ID from matched client
-    // run delete_client function
-    // return success
+    if($client_id == 0)
+    {
+        header("Location: ../../views/clients_projects.php");
+        throw new Exception("Client not selected!");
+    }
+    else
+    {
+        $success = delete_client($client_id);
+        
+        if ($success)
+        {
+            header("Location: ../../views/clients_projects.php?dc=y");
+        }
+        else
+        {
+            header("Location:../../views/clients_projects.php?dc=n");
+        }
+        
+    }
+    
  ?>

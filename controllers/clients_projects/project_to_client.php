@@ -1,12 +1,30 @@
 <?php
-    include '../models/client_model.php';
+    include "../../models/project_model.php";
 
-    $client = trim(filter_input(INPUT_POST, 'client', FILTER_SANITIZE_STRING));
-    $project = trim(filter_input(INPUT_POST, 'project', FILTER_SANITIZE_STRING));
+    $client_id = trim(filter_input(INPUT_POST, 'client', FILTER_SANITIZE_NUMBER_INT));
+    $project_id = trim(filter_input(INPUT_POST, 'project', FILTER_SANITIZE_NUMBER_INT));
 
-    //$clients = get_all_clients();
-    // If received client is in the returned array, continue;
+    if ($client_id == 0)
+    {
+        header("Location: ../../views/clients_projects.php");
+        throw new Exception("Client not selected!");
+    }
+    else if ($project_id == 0)
+    {
+        header("Location: ../../views/clients_projects.php");
+        throw new Exception("Project not selected!");
+    }
 
-    //$projects = get_all_projects();
-    // If received project is in the returned array, continue;
- ?>
+    $success = assign_project_to_client($client_id, $project_id);
+    
+    if ($success)
+    {
+        header("Location: ../../views/clients_projects.php?cp=y");
+    }
+    else
+    {
+        header("Location:../../views/clients_projects.php?cp=n");
+    }
+    
+
+?>

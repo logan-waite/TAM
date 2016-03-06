@@ -1,11 +1,25 @@
 <?php
-    include '../models/project_model.php';
+    include '../../models/project_model.php';
 
-    $project = trim(filter_input(INPUT_POST, 'project', FILTER_SANITIZE_STRING));
+    $project_id = trim(filter_input(INPUT_POST, 'project', FILTER_SANITIZE_STRING));
 
-    //$projects = get_all_projects();
-    // If received project is in the returned array, continue;
-    // Get ID from matched project
-    // run delete_project function
-    // return success
+    if($project_id == 0)
+    {
+        header("Location: ../../views/clients_projects.php");
+        throw new Exception("Project not selected!");
+    }
+    else
+    {
+        $success = delete_project($project_id);
+        
+        if ($success)
+        {
+            header("Location: ../../views/clients_projects.php?dp=y");
+        }
+        else
+        {
+            header("Location:../../views/clients_projects.php?dp=n");
+        }
+        
+    }
  ?>
