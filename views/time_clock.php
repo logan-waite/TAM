@@ -15,23 +15,13 @@
         <div id="clock"> 23:59:59 </div>
     </form>
     <form id='clock-in' action='../controllers/time_clock/clock_in.php' method='post'>
-        <div class='select-arrows' id='client-arrow'>
-            <>
-        </div>
-        <select id='choose-client' name='choose-client' class="btn btn-info btn-select"><span class="caret"></span>
-            <option value='1'>This Client</option>
-            <option value='2'>This Client</option>
-            <option value='3'>This Client</option>
-        </select>
-        <div class='select-arrows' id='project-arrow'>
-            <>
-        </div>
-        <select id="choose-project" name='choose-project' class="btn btn-info btn-select">
-            <option value='1'>Project 1</option>
-            <option value='2'>Project 2</option>
-            <option value='3'>Project 3</option>
-        </select>
-            <input type="submit" value="Clock In" class="btn btn-success" style='margin-top: 0;'>
+        <select id='client-select' name='choose-client' class="btn btn-info btn-select"><span class="caret"></span>
+            <option value='0'>Select Client</option>
+        </select> <br>
+        <select id="project-select" name='choose-project' class="btn btn-info btn-select">
+            <option value='0'>Select Project</option>
+        </select> <br>
+        <input type="submit" value="Clock In" class="btn btn-success" style='margin-top: 0;'>
     </form>
     <div id="current-project">
         Sample Project goes here

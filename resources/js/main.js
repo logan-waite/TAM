@@ -26,6 +26,7 @@ $(document).ready(function() {
                 }));
             }
     });
+    
     $.post('../controllers/clients_projects/project_client.php', 
            {action:'load', data:'clients'}, 
            function(result) {
@@ -63,10 +64,20 @@ $(document).ready(function() {
         event.preventDefault();
         
         var data = $('#clock-in').serialize();
-        $.post('../controllers/time_clock/clock_in.php', data, function () {
-            $('#clock-in').css('display', 'none');
-            $('#clock-out').css('display', 'block');
-            $('#current-project').css('visibility', 'visible');
+        $.post('../controllers/time_clock/clock_in.php', data, function (result) {
+            $('.alert-warning').remove();
+            console.log(result);
+            if (result == -1)
+            {
+                $('#client-select').before("<p class='alert alert-warning'>Please choose both a client and a project</p>");        
+            }
+            else
+            {
+                $('#clock-in').css('display', 'none');
+                $('#clock-out').css('display', 'block');
+                $('#current-project').css('display', 'block');                
+            }
+
         });
     });
     
@@ -76,7 +87,7 @@ $(document).ready(function() {
         
         $.post("../controllers/time_clock/clock_out.php", function () {
             $('#clock-out').css('display', 'none');
-            $('#current-project').css('visibility', 'hidden');
+            $('#current-project').css('display', 'none');
             $('#clock-in').css('display', 'block');
         });
     });
@@ -149,4 +160,5 @@ $(document).ready(function() {
                 $('#project-sort div').removeClass('active')
         });
     });
+    
 });
