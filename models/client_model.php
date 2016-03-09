@@ -66,7 +66,7 @@
         
         try
         {
-            $query = "SELECT projects.name
+            $query = "SELECT projects.name, projects.id
                         FROM client_project
                         JOIN projects
                             ON client_project.project_id = projects.id

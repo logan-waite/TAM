@@ -1,4 +1,68 @@
 $(document).ready(function() {
+    
+    /*
+    *   Functions for timer on time_clock page
+    *
+    */
+    var timerID = 0;
+    function leading_zero(num)
+    {
+        var zero = "0";
+        if (num < 10 || num == 0)
+        {
+            zero = "0";    
+        }
+        else
+        {
+            zero = "";
+        }
+        return zero;
+    }
+
+    function start_timer(hour, min, sec)
+    {
+        hour = typeof hour !== 'undefined' ? hour : 0;
+        min = typeof min !== 'undefined' ? min : 0;
+        sec = typeof sec !== 'undefined' ? sec : 0;
+        
+        timerID = setInterval(function() 
+        {
+            sec++; 
+            if (sec > 59)
+            {
+                min++;
+                sec = 0;
+                if (min > 59)
+                {
+                    hour++;
+                    min = 0;
+                }
+            }
+            var time =hour + ":" + leading_zero(min) + min + ":" + leading_zero(sec) + sec;
+            $('#clock').html(time);
+        }, 1000);
+    }
+    
+    /*
+    *   Checks if there are any valid active entries
+    *   If yes, show "clock-out" form
+    *   If no, show "clock-in" form
+    */
+    $.post('../controllers/time_clock/active_clients.php', function(result) {
+        var info = result.split(',');
+        var id = info[0];
+        var time = info[1].split(':');
+        var name = info[2];
+        
+        $('#clock').html(time[0] + ":" + leading_zero(time[1]) + time[1] + ":" + leading_zero(time[2]) + time[2]);
+        start_timer(time[0], time[1], time[2]);
+
+        $('#clock-out').css('display', 'block');
+        $('#current-project').css('display', 'block').html(name); 
+        $('#clock-in').css('display', 'none');            
+    });
+    
+    
     /*
     *   Gets information from project_client controller;
     *   inserts options into appropriate select elements;
@@ -43,6 +107,11 @@ $(document).ready(function() {
                             text: names[i]
                         }));
                         
+                        $('#choose-client').append($('<option>', {
+                            value: values[i],
+                            text: names[i]
+                        }));
+                        
                         $('#delete_c').append($('<option>', {
                             value: values[i],
                             text: names[i]
@@ -57,6 +126,28 @@ $(document).ready(function() {
             });
     
     /*
+    *   When a client is selected in the time_clock view, only show relevant projects
+    *   
+    */
+    $("#choose-client").change(function(event) {
+        var client = $('#choose-client').val();
+        $.post("../controllers/clients_projects/project_client.php", {action:"choose-client", client_id:client}, function(result) {
+            var info = result.split('/');
+            var ids = info[0].split(',');
+            var names = info[1].split(',');
+            names.splice(-1,1);
+                
+            for(var i = 0; i < names.length; i++)
+            {
+                $('#choose-project').append($('<option>', {
+                            value: ids[i],
+                            text: names[i]
+                    }))
+            };
+        });
+    });
+    
+    /*
     *   Alternates between clock-in and clock-out, sends data to controller
     */
     // When "clock-in" button is clicked, submits data to form and changes to the clock-out button with timer
@@ -66,7 +157,6 @@ $(document).ready(function() {
         var data = $('#clock-in').serialize();
         $.post('../controllers/time_clock/clock_in.php', data, function (result) {
             $('.alert-warning').remove();
-            console.log(result);
             if (result == -1)
             {
                 $('#client-select').before("<p class='alert alert-warning'>Please choose both a client and a project</p>");        
@@ -75,7 +165,9 @@ $(document).ready(function() {
             {
                 $('#clock-in').css('display', 'none');
                 $('#clock-out').css('display', 'block');
-                $('#current-project').css('display', 'block');                
+                $('#clock').html("0:00:00");
+                start_timer(0,0,0);
+                $('#current-project').css('display', 'block').html(result);                
             }
 
         });
@@ -85,10 +177,26 @@ $(document).ready(function() {
     $('#clock-out').submit(function (event) {
         event.preventDefault();
         
-        $.post("../controllers/time_clock/clock_out.php", function () {
-            $('#clock-out').css('display', 'none');
-            $('#current-project').css('display', 'none');
-            $('#clock-in').css('display', 'block');
+        $.post("../controllers/time_clock/clock_out.php", function (result) {
+            $('.alert-danger').remove();
+            clearInterval(timerID);
+            if (result == 0) {
+                $('#clock-out').before("<p class='alert alert-danger'>An error occurred while clocking out</p>"); 
+                    $.post('../controllers/time_clock/active_clients.php', function(result) {
+                    var info = result.split(',');
+                    var time = info[1].split(':');
+        
+                    $('#clock').html(time[0] + ":" + leading_zero(time[1]) + time[1] + ":" + leading_zero(time[2]) + time[2]);
+                    start_timer(time[0], time[1], time[2]);
+                    })
+            }
+            else
+            {
+                $('#clock-out').css('display', 'none');
+                $('#current-project').css('display', 'none');
+                $('#clock-in').css('display', 'block');                
+            }
+
         });
     });
     
@@ -145,8 +253,8 @@ $(document).ready(function() {
                {action:'choose-client', client_id:client_id}, 
                function(result) {
                 $('#project-list .list-group-item').remove();
-            
-                var names = result.split(',');
+                var info = result.split('/');
+                var names = info[1].split(',');
                 names.splice(-1,1);
         
                 for(var i = 0; i < names.length; i++)

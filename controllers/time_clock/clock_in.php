@@ -7,6 +7,7 @@
     if ($client_id == 0 || $project_id == 0)
     {
         echo -1;
+        error_log("client_id: ".$client_id."; project_id: ".$project_id);
         throw new Exception ('No client or project passed to clock-in.php');
     }
     else
@@ -15,7 +16,7 @@
 
         if ($success)
         {
-            echo 1; 
+            echo $success; 
         }   
         else
         {
