@@ -6,12 +6,12 @@
 
     if ($client_id == 0)
     {
-        header("Location: ../../views/clients_projects.php");
+        header("Location: ../../views/clients_projects/clients_projects.php");
         throw new Exception("Client not selected!");
     }
     else if ($project_id == 0)
     {
-        header("Location: ../../views/clients_projects.php");
+        header("Location: ../../views/clients_projects/clients_projects.php");
         throw new Exception("Project not selected!");
     }
 
@@ -19,11 +19,11 @@
     
     if ($success)
     {
-        header("Location: ../../views/clients_projects.php?cp=y");
+        header("Location: ../../views/clients_projects/clients_projects.php?cp=y");
     }
     else
     {
-        header("Location:../../views/clients_projects.php?cp=n");
+        header("Location: ../../views/clients_projects/clients_projects.php?cp=n");
     }
     
 

@@ -1,5 +1,5 @@
 <center>
-    <form action='../controllers/clients_projects/project_to_client.php' method='post' id='project-to-client'>
+    <form action='../../controllers/clients_projects/project_to_client.php' method='post' id='project-to-client'>
         <select name='client' id='client-select'>
             <option value='0'>Select Client</option>
         </select>

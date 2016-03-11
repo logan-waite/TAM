@@ -15,11 +15,11 @@
         
         if ($success)
         {
-            header("Location: ../../views/clients_projects.php?ac=y");
+            header("Location: ../../views/clients_projects/clients_projects.php?ac=y");
         }
         else
         {
-            header("Location:../../views/clients_projects.php?ac=n");
+            header("Location:../../views/clients_projects/clients_projects.php?ac=n");
         }
         
     }

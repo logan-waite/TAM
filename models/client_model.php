@@ -30,7 +30,7 @@
         }
     }
 
-    function get_all_clients()  // Returns an array containing all the clients in the database
+    function get_all_clients()  // Returns an array containing all the user's clients in the database
     {
         global $db;
         
@@ -38,7 +38,8 @@
         {
             $query = "SELECT id, name
                     FROM clients
-                    WHERE user_id = :user_id";
+                    WHERE user_id = :user_id
+                    ORDER BY name";
             $result = $db->prepare($query);
             $result->execute(
                 array(
@@ -55,7 +56,7 @@
 
     }
 
-    function get_client_projects($client_id = NULL)
+    function get_client_projects($client_id = NULL) //  Returns an array of a client's projects
     {
         if ($client_id == NULL)
         {

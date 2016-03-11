@@ -29,7 +29,7 @@
     }
 
 
-    include 'includes/header.php';
+    include '../includes/header.php';
 ?>
 
 <header class='main-header'>
@@ -74,7 +74,7 @@
             <div id="collapseOne" class="panel-collapse collapse <?=$nc_pane?>" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body tool-panel">
                   <?php
-                        include 'clients_projects/new_client_form.php';
+                        include '../clients_projects/new_client_form.php';
                    ?>
               </div>
             </div>
@@ -88,7 +88,7 @@
             <div id="collapseTwo" class="panel-collapse collapse <?=$np_pane?>" role="tabpanel" aria-labelledby="headingTwo">
               <div class="panel-body tool-panel">
                   <?php
-                        include 'clients_projects/new_project_form.php';
+                        include '../clients_projects/new_project_form.php';
                    ?>
               </div>
             </div>
@@ -102,7 +102,7 @@
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
               <div class="panel-body tool-panel">
                   <?php
-                        include 'clients_projects/project_to_client_form.php';
+                        include '../clients_projects/project_to_client_form.php';
                    ?>
               </div>
             </div>
@@ -116,7 +116,7 @@
             <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
               <div class="panel-body tool-panel">
                   <?php
-                        include 'clients_projects/delete_project_form.php';
+                        include '../clients_projects/delete_project_form.php';
                    ?>
               </div>
             </div>
@@ -130,7 +130,7 @@
             <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
               <div class="panel-body tool-panel">
                   <?php
-                        include 'clients_projects/delete_client_form.php';
+                        include '../clients_projects/delete_client_form.php';
                    ?>
               </div>
             </div>
@@ -140,5 +140,5 @@
 </div>
 
 <?php
-    include 'includes/footer.php';
+    include '../includes/footer.php';
 ?>

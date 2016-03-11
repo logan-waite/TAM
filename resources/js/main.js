@@ -1,5 +1,9 @@
 $(document).ready(function() {
     
+/****************************************************************************************/
+/************                        Time Clock functions                    ************/   
+/****************************************************************************************/
+    
     /*
     *   Functions for timer on time_clock page
     *
@@ -48,7 +52,7 @@ $(document).ready(function() {
     *   If yes, show "clock-out" form
     *   If no, show "clock-in" form
     */
-    $.post('../controllers/time_clock/active_clients.php', function(result) {
+    $.post('../../controllers/time_clock/active_entries.php', function(result) {
         var info = result.split(',');
         var id = info[0];
         var time = info[1].split(':');
@@ -67,10 +71,11 @@ $(document).ready(function() {
     *   Gets information from project_client controller;
     *   inserts options into appropriate select elements;
     *   creates client list;
+    *   Also applies to client_projects page
     */
     var clients;
     var projects;
-    $.post('../controllers/clients_projects/project_client.php', {action:'load', data:'projects'}, function(result) {
+    $.post('../../controllers/clients_projects/project_client.php', {action:'load', data:'projects'}, function(result) {
         var allResults = result.split('/');
         var values = allResults[0].split(',');
         var names = allResults[1].split(',');
@@ -91,7 +96,7 @@ $(document).ready(function() {
             }
     });
     
-    $.post('../controllers/clients_projects/project_client.php', 
+    $.post('../../controllers/clients_projects/project_client.php', 
            {action:'load', data:'clients'}, 
            function(result) {
                 var allResults = result.split('/');
@@ -131,11 +136,17 @@ $(document).ready(function() {
     */
     $("#choose-client").change(function(event) {
         var client = $('#choose-client').val();
-        $.post("../controllers/clients_projects/project_client.php", {action:"choose-client", client_id:client}, function(result) {
+        $.post("../../controllers/clients_projects/project_client.php", {action:"choose-client", client_id:client}, function(result) {
             var info = result.split('/');
             var ids = info[0].split(',');
             var names = info[1].split(',');
             names.splice(-1,1);
+            
+            $('#choose-project option').remove();
+            $('#choose-project').append($('<option>', {
+                value: 0,
+                text: 'Select Project'
+            }))
                 
             for(var i = 0; i < names.length; i++)
             {
@@ -155,7 +166,7 @@ $(document).ready(function() {
         event.preventDefault();
         
         var data = $('#clock-in').serialize();
-        $.post('../controllers/time_clock/clock_in.php', data, function (result) {
+        $.post('../../controllers/time_clock/clock_in.php', data, function (result) {
             $('.alert-warning').remove();
             if (result == -1)
             {
@@ -177,12 +188,12 @@ $(document).ready(function() {
     $('#clock-out').submit(function (event) {
         event.preventDefault();
         
-        $.post("../controllers/time_clock/clock_out.php", function (result) {
+        $.post("../../controllers/time_clock/clock_out.php", function (result) {
             $('.alert-danger').remove();
             clearInterval(timerID);
             if (result == 0) {
                 $('#clock-out').before("<p class='alert alert-danger'>An error occurred while clocking out</p>"); 
-                    $.post('../controllers/time_clock/active_clients.php', function(result) {
+                    $.post('../../controllers/time_clock/active_entries.php', function(result) {
                     var info = result.split(',');
                     var time = info[1].split(':');
         
@@ -199,6 +210,17 @@ $(document).ready(function() {
 
         });
     });
+    
+    /*
+    *   Retrieves clients and projects for whom work has been done
+    *   List accordian panels to view
+    */
+    
+    $.post("../controllers/")
+    
+/****************************************************************************************/
+/************                Client and Project functions                    ************/   
+/****************************************************************************************/
     
     /*
     *   When forms are submitted, make sure they actually chose something.
@@ -249,7 +271,7 @@ $(document).ready(function() {
         $(".active", event.delegateTarget).removeClass("active");
         $(this).addClass("active");
         var client_id = $(this).attr('value');
-        $.post("../controllers/clients_projects/project_client.php", 
+        $.post("../../controllers/clients_projects/project_client.php", 
                {action:'choose-client', client_id:client_id}, 
                function(result) {
                 $('#project-list .list-group-item').remove();

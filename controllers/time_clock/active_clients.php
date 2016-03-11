@@ -1,26 +1,38 @@
 <?php
-    date_default_timezone_set("America/Denver");
-
     include "../../models/entry_model.php";
+    include '../../models/client_model.php';
 
-    $success = get_active_entries();
+    $clients = get_all_clients();
+    $i = 1;
+        
+    $results = get_entry_times();
 
-    if ($success)
+    debug($results);
+    foreach ($results as $client)
     {
-        $now = new DateTime();
-        $id = $success['id'];
-        $start_time = new DateTime($success['start_time']);
-        $project_title = $success['name'];
 
-        $diff = $start_time->diff($now);
-
-        $time_string = $diff->h.":".$diff->i.":".$diff->s;
-        $result = $id.",".$time_string.",".$project_title;
-        error_log($result);
-        echo $result;
     }
-    else
-    {
-        echo 0;
-    }
+    
 ?>
+
+<?php foreach ($clients as $row): ?>
+    
+    <?php $client = $row['name']; ?>
+
+    <div class="panel panel-info">
+        <div class="panel-heading" role="tab" id="heading<?=$i?>" data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$i?>" aria-controls="collapse<?=$i?>">
+          <h4 class="panel-title">
+              <?=$client?>
+          </h4>
+        </div>
+        <div id="collapse<?=$i?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?=$i?>">
+          <div class="panel-body client-panel">
+                    <div class='alert alert-project'>
+                </div>
+            </div>
+        </div>
+      </div>
+    <?php
+        $i++;
+    ?>
+<?php endforeach ?>

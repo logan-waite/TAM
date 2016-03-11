@@ -1,4 +1,4 @@
-<form action='../controllers/clients_projects/new_client.php' method='post'>
+<form action='../../controllers/clients_projects/new_client.php' method='post'>
     <p>Please enter the client's name, and their phone number and/or mailing address.</p>
     <?=$nc_alert?>
     <label for='client_name'>Name: </label><br>
