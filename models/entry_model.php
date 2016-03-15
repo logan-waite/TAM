@@ -161,57 +161,57 @@
     *        }
     *    }
     */
-    function get_entry_times()  
+    function get_project_entry_times($client_id = NULL)  
     {
+        if ($client_id == NULL)
+        {
+            throw new Exception ("client_id was passed NULL into get_project_entry_times");
+        }
         global $db;
-        $query = "SELECT clients.name AS client,
-                         projects.name AS project,
+        $query = "SELECT projects.name AS project,
                          entries.start_time,
                          entries.end_time
                   FROM entries
                   JOIN client_project cp
                     ON entries.cp_id = cp.id
-                  JOIN clients
-                    ON cp.client_id = clients.id
                   JOIN projects
                     ON cp.project_id = projects.id
-                  WHERE clients.user_id = :user_id
-                  ORDER BY client";
+                  WHERE projects.user_id = :user_id
+                  AND cp.client_id = :client_id";
         $result = $db->prepare($query);
-        $result->execute(array("user_id" => $_SESSION['user_id']));
+        $result->execute(
+            array(
+                "user_id" => $_SESSION['user_id'],
+                "client_id" => $client_id
+            )
+        );
         
         $entries = $result->fetchAll();
         
-        $all_entries = array();
-        $i = 0;
-        
+        $times = array();
         foreach ($entries as $entry)
         {
-            $time = determine_entry_length($entry['start_time'], $entry['end_time']);
-            $client = $entry['client'];
-            if (!array_key_exists($client, $all_entries))   //  If the client is not in the all_entries array yet
+            $project = $entry['project'];
+            $start = new DateTime($entry['start_time']);
+            $end = new DateTime($entry['end_time']);
+            $diff = $start->diff($end);
+            $test = "";
+            if(array_key_exists($project, $times))
             {
-                $all_entries[] = array(
-                    $client => array()
-                );    //  Create a new array with the client name as the key
-                $project = $entry['project'];
-                $all_entries[$i][$client] = array($project => $time);  // Create a new array under the client with the project name as the key
-            }
-            elseif (array_key_exists($client, $all_entries))    //  If the client already has an array
-            {                
-                $project = $entry['project'];
-                if (!array_key_exists($project, $all_entries[$client])) //  If the project is not in the client array
-                {
-                    $all_entries[$client][$project] = array($time);  // Create a new array with the project name as the key
+                $existing = new DateTime($times[$project]);
+                $existing->add($diff);
+                $time_string = $existing->format("H:i:s");
+                $times[$project] = $time_string;
+                $test = $time_string;
 
-                }
-                elseif (array_key_exists($project, $all_entries[$client]))
-                {
-                    $all_entries[$client][$project][] = $time;
-                }
-            }  
+            }
+            else
+            {
+                $new = new DateTime($diff->h.":".$diff->i.":".$diff->s);
+                $times[$project] = $new->format("H:i:s");
+            }
         }
-        return $all_entries;
+        return $times;
     }
 
     function update_entry()

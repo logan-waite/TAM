@@ -30,6 +30,27 @@
         }
     }
 
+    function get_active_clients()
+    {
+        global $db;
+        $query = "SELECT clients.id, clients.name
+                    FROM clients
+                    JOIN client_project cp
+                        ON clients.id = cp.client_id
+                    JOIN entries
+                        ON cp.id = entries.cp_id
+                    WHERE clients.user_id = :user_id
+                    GROUP BY clients.name";
+        $results = $db->prepare($query);
+        $results->execute(
+            array(
+                "user_id" => $_SESSION['user_id']
+            )
+        );
+        
+        return $results->fetchAll();
+    }
+
     function get_all_clients()  // Returns an array containing all the user's clients in the database
     {
         global $db;
