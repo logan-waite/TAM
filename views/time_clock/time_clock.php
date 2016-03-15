@@ -1,5 +1,5 @@
 <?php
-    $title = "PAT: Time Clock";
+    $title = "TAM: Time Clock";
 
     include '../includes/header.php';
 ?>

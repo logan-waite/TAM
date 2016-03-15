@@ -5,7 +5,7 @@ $port = 8888;
 try 
 {
     $db = new PDO(
-        "mysql:host=localhost;dbname=PAT",
+        "mysql:host=localhost;dbname=TAM",
         "root",
         "root"
     );

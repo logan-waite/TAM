@@ -1,5 +1,5 @@
 <?php
-    $title = "PAT: Clients and Projects";
+    $title = "TAM: Clients and Projects";
     $response = '';
 
     if (!empty($_SERVER['QUERY_STRING'])) {

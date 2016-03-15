@@ -60,7 +60,7 @@
         <script type="text/javascript" src="../../resources/js/views.js"></script>
         <title><?=$title?></title>
         <script type="text/javascript" src="../../resources/js/main.js"></script>
-        <title>PAT</title>
+        <title>TAM</title>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -73,7 +73,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">PAT</a>
+                    <a class="navbar-brand" href="#">TAM</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
