@@ -54,31 +54,17 @@ header {
 /**********
  Time Clock
 ***********/
-.select-arrows {
-    position: absolute;
-    -webkit-transform:rotate(90deg);
-    -moz-transform:rotate(90deg);
-    -ms-transform:rotate(90deg);
-    transform:rotate(90deg);
-    color: white;
-    font-weight: bold;
-    top: 7px;
-}
-
-#client-arrow {
-    left: 80px;
-}
-
-#project-arrow {
-    left: 173px;
-}
 
 #clock-in {
-    position: absolute;
-    top: 35px;
-    left: 50%;
-    margin-top: -17px;
-    margin-left: -130px;
+    margin: 0px auto;
+    text-align: center;
+    width: 300px;
+    
+}
+
+
+#clock-in select {
+    margin-bottom: 10px;
 }
 
 .btn-select {
@@ -88,16 +74,14 @@ header {
     background-image: ; /* Create background image for select to standardize view across browsers*/
     margin: 0px;
     padding: 6px 18px 6px 12px;
+    text-align:center;
 }
 
 #clock-out {
     display: none;
-    position: absolute;
-    top: 35px;
-    left: 50%;
-    margin-top: -17px;
-    margin-left: -94px;
-    width: 100%;
+    margin: 5px auto;
+    width: 185px;
+    height: 35px;
 }
 
 #clock-button {
@@ -120,15 +104,10 @@ header {
 }
 
 #current-project {
-    float: left;
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    margin-left: -50%;
     text-align: center;
     width: 100%;
     font-size: 1.25em;
-    visibility: hidden;
+    display: none;
 }
 
 #total-hours {
@@ -136,10 +115,7 @@ header {
 }
 
 #project-wrapper {
-    position: relative;
-    top: 80px;
-    left: 50%;
-    margin-left: -25%;
+    margin: 10px auto;
     width: 50%;
 }
 
@@ -151,6 +127,7 @@ header {
     border-radius: 2px;
     border-color: #CCC;
 }
+
 
 .client-panel {
     padding: 5px 0 5px 25px;

@@ -47,12 +47,14 @@
         $projects = get_client_projects($client_id);
         
         $project_string = "";
+        $id_string = "";
         
         foreach($projects as $item)
-        {
+        {  
+            $id_string .= $item['id'] . ",";
             $project_string .= $item['name'] . ",";
         }
-        
-        echo $project_string;
+        $result = $id_string."/".$project_string;
+        echo $result;
     }
  ?>

@@ -17,11 +17,11 @@
         
         if ($success)
         {
-            header("Location: ../../views/clients_projects.php?ap=y");
+            header("Location: ../../views/clients_projects/clients_projects.php?ap=y");
         }
         else
         {
-            header("Location:../../views/clients_projects.php?ap=n");
+            header("Location:../../views/clients_projects/clients_projects.php?ap=n");
         }
     }
 

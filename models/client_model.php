@@ -30,7 +30,28 @@
         }
     }
 
-    function get_all_clients()  // Returns an array containing all the clients in the database
+    function get_active_clients()
+    {
+        global $db;
+        $query = "SELECT clients.id, clients.name
+                    FROM clients
+                    JOIN client_project cp
+                        ON clients.id = cp.client_id
+                    JOIN entries
+                        ON cp.id = entries.cp_id
+                    WHERE clients.user_id = :user_id
+                    GROUP BY clients.name";
+        $results = $db->prepare($query);
+        $results->execute(
+            array(
+                "user_id" => $_SESSION['user_id']
+            )
+        );
+        
+        return $results->fetchAll();
+    }
+
+    function get_all_clients()  // Returns an array containing all the user's clients in the database
     {
         global $db;
         
@@ -38,7 +59,8 @@
         {
             $query = "SELECT id, name
                     FROM clients
-                    WHERE user_id = :user_id";
+                    WHERE user_id = :user_id
+                    ORDER BY name";
             $result = $db->prepare($query);
             $result->execute(
                 array(
@@ -55,7 +77,7 @@
 
     }
 
-    function get_client_projects($client_id = NULL)
+    function get_client_projects($client_id = NULL) //  Returns an array of a client's projects
     {
         if ($client_id == NULL)
         {
@@ -66,7 +88,7 @@
         
         try
         {
-            $query = "SELECT projects.name
+            $query = "SELECT projects.name, projects.id
                         FROM client_project
                         JOIN projects
                             ON client_project.project_id = projects.id
