@@ -1,5 +1,5 @@
 <?php
-    //require_once ('../../controllers/db_connect.php');
+    require_once ('../../resources/db_connect.php');
     function debug($item)
     {
         echo "<pre>";

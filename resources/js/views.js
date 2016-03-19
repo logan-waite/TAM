@@ -38,12 +38,6 @@ $(document).ready(function () {
         }
     });
 
-    // Shows which sort-tab is currently active, and changes on click
-    $(".sort-tabs").on("click", "div:not(.active)", "", function (event) {
-        $(".active", event.delegateTarget).removeClass("active");
-        $(this).addClass("active");
-    });
-    
     // Shows/hides interval dropdown on checkbox
     $('#recurring').change(function () {
         if ($('#recurring').prop('checked')) {

@@ -29,7 +29,6 @@
             );
             
             $id = $id_result->fetch();
-            error_log($id['id']);
             
             $query = "INSERT INTO entries
                         (cp_id)
