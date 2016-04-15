@@ -1,5 +1,6 @@
 <?php
 
+date_default_timezone_set("America/Denver");
 $port = 8888;
 
 try 
@@ -27,4 +28,5 @@ catch (Exception $error)
         error_log("Cannot connect to the database");
 }
 
+require_once "misc_functions.php";
 ?>

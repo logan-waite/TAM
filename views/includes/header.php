@@ -1,11 +1,5 @@
 <?php
     require_once ('../../resources/db_connect.php');
-    function debug($item)
-    {
-        echo "<pre>";
-        var_dump($item);
-        echo "</pre>";
-    }
 
     session_start();
     if (!isset($_SESSION['user'])) 

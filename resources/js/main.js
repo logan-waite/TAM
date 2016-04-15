@@ -270,31 +270,40 @@ $(document).ready(function() {
         $(".active", event.delegateTarget).removeClass("active");
         $(this).addClass("active");
         var client_id = $(this).attr('value');
-        $.post("../../controllers/clients_projects/project_client.php", 
-               {action:'choose-client', client_id:client_id}, 
-               function(result) {
+        
+        if($('header h1').html() == "Clients and Projects")
+        {
+            $.post("../../controllers/clients_projects/project_client.php", 
+            {action:'choose-client', client_id:client_id}, 
+            function(result) {
                 $('#project-list .list-group-item').remove();
                 var info = result.split('/');
                 var names = info[1].split(',');
                 names.splice(-1,1);
-        
+
                 for(var i = 0; i < names.length; i++)
-                    {
-                        $('#project-list').append($(
-                            "<div class='list-group-item'>" + 
-                            names[i] +
-                            '</a>')
-                        );
-                    }            
+                {
+                    $('#project-list').append($(
+                        "<div class='list-group-item'>" + 
+                        names[i] +
+                        '</a>')
+                    );
+                }            
                 $('#project-sort div').removeClass('active')
-        });
+            });   
+        }
+        else if ($('header h1').html() == "Billing")
+        {
+            console.log($(this).attr('value'));
+            var client_id = $(this).attr('value');
+            $("#time-report").load("../../controllers/billing/invoice_entries.php", { client_id : client_id });
+        }
     });
     
     // Shows which sort-tab is currently active, and changes on click
     $(".sort-tabs").on("click", "div:not(.active)", "", function (event) {
         $(".active", event.delegateTarget).removeClass("active");
         $(this).addClass("active");
-        console.log($(this).html());
         $.post('../../controllers/clients_projects/project_client.php', 
                {action:'load', data:'projects'}, 
                function(result) {
@@ -317,6 +326,10 @@ $(document).ready(function() {
             $('#client-list .list-group-item').removeClass('active')
         });
     });
-    
+
+/****************************************************************************************/
+/************                      Billing functions                         ************/   
+/****************************************************************************************/  
+
     
 });
