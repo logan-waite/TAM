@@ -109,12 +109,37 @@
         }
     }
 
-    function get_specific_client()
+    function get_specific_client($client_id = NULL)     // Returns everything about a client
     {
-
+        global $db;
+        
+        if ($client_id == NULL)
+        {
+            throw new Exception ("We are missing client_id in get_specific_client! Client: {$client_id}");
+        }
+        
+        try
+        {
+            $query = "SELECT *
+                        FROM clients
+                        WHERE id = :client_id";
+            $result = $db->prepare($query);
+            $result->execute(
+                array(
+                    "client_id" => $client_id
+                )
+            );
+            
+            return $result->fetch();
+        }
+        catch (Exception $e)
+        {
+            error_log("Database error: $e");
+            return 0;
+        }
     }
 
-    function new_client($client_name = NULL, $phone_number = NULL, $email = NULL)
+    function new_client($client_name = NULL, $phone_number = NULL, $email = NULL)   // Creates new client
     {
         if ($client_name == NULL || ($phone_number == NULL && $email == NULL))
         {

@@ -12,27 +12,22 @@
         <header class="sub">
             Clients
         </header>
-        <div id='client-list' class="list-group">
+        <div id='client-list' class="list-group billing">
             
         </div>
     </div>
     <div id="time-report">
-		<header class="sub">
-			Report
-		</header>
-		<div class="list-group">
-			<div class="list-group-item report-item">
-				An easy project
-			</div>
-		</div>
+        <?php
+            //include "../../controllers/billing/invoice_entries.php";
+        ?>
 	</div>
     <div id='b-tools'>
         <header class='sub'>
             Tools
         </header>
-        <button type='button' class='tool-btn btn btn-info'> Print </button> <br>
+        <button type='button' class='tool-btn btn btn-info disabed' disabled> Print </button> <br>
         <button type='button' class='tool-btn btn btn-info'> Email </button> <br>
-        <button type='button' class='tool-btn btn btn-info'> Edit </button> <br>
+        <button type='button' class='tool-btn btn btn-info disabled' disabled> Edit </button> <br>
         <button type='button' class='tool-btn btn btn-info'> Record Payment </button> <br>
     </div>
 </div>

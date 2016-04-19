@@ -16,7 +16,7 @@
 
         $time_string = $diff->h.":".$diff->i.":".$diff->s;
         $result = $id.",".$time_string.",".$project_title;
-        error_log($result);
+        //error_log($result);
         echo $result;
     }
     else

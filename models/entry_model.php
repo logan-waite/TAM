@@ -1,6 +1,5 @@
 <?php
     session_start();
-    date_default_timezone_set("America/Denver");
     include "../../resources/db_connect.php";
 
     function start_clock($client_id = NULL, $project_id = NULL)  //  Creates new entry with start time 
@@ -29,7 +28,6 @@
             );
             
             $id = $id_result->fetch();
-            error_log($id['id']);
             
             $query = "INSERT INTO entries
                         (cp_id)
@@ -150,18 +148,14 @@
     //  Gets entries, finds how long they took, and return an array of clients, projects, and entry times
     // Array is multidimensional, with times in a projects array in a clients array in the whole thing, as so:
     /*
-    *    array(1) {
-    *        ["client"]=>
-    *        array(1) {
-    *            ["project"]=>
-    *            array(1) {
-    *                [0]=>
-    *                string(7) "1:12:39"
-    *            }
-    *        }
-    *    }
+    *   array(1) {
+    *        ["Project 1"]=>
+    *            string(8) "00:01:39"
+    *        ["Project 2"]=>
+    *            string(8) "00:02:44"
+    *    }   
     */
-    function get_project_entry_times($client_id = NULL)  
+    function get_project_entry_times($client_id = NULL, $pay = FALSE)  
     {
         if ($client_id == NULL)
         {
@@ -169,6 +163,7 @@
         }
         global $db;
         $query = "SELECT projects.name AS project,
+                         projects.pay_rate AS pay,
                          entries.start_time,
                          entries.end_time
                   FROM entries
@@ -191,6 +186,7 @@
         $times = array();
         foreach ($entries as $entry)
         {
+            $pay = $entry['pay'];
             $project = $entry['project'];
             $start = new DateTime($entry['start_time']);
             $end = new DateTime($entry['end_time']);
@@ -210,6 +206,7 @@
                 $new = new DateTime($diff->h.":".$diff->i.":".$diff->s);
                 $times[$project] = $new->format("H:i:s");
             }
+            
         }
         return $times;
     }

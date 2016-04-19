@@ -7,13 +7,13 @@
     $recurring = trim(filter_input(INPUT_POST, 'recurring', FILTER_SANITIZE_STRING));
     $interval = trim(filter_input(INPUT_POST, 'interval', FILTER_SANITIZE_STRING));
 
-    if (empty($project_title) || empty($description) || empty($pay_rate))
+    if (empty($project_title) || empty($pay_rate))
     {
         header("Location: ../../views/clients_projects.php?np=n");
     }
     else
     {
-        $success = new_project($project_title, $description, $pay_rate);
+        $success = new_project($project_title, $description, $pay_rate, $recurring, $interval);
         
         if ($success)
         {

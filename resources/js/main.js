@@ -93,6 +93,12 @@ $(document).ready(function() {
                     value: values[i],
                     text: names[i]
                 }));
+                
+                $('#project-list').append($(
+                    "<a class='list-group-item' value='"+values[i]+"'>" + 
+                    names[i] +
+                    '</a>')
+                );
             }
     });
     
@@ -190,7 +196,6 @@ $(document).ready(function() {
         
         $.post("../../controllers/time_clock/clock_out.php", function (result) {
             $('.alert-danger').remove();
-            clearInterval(timerID);
             if (result == 0) {
                 $('#clock-out').before("<p class='alert alert-danger'>An error occurred while clocking out</p>"); 
                     $.post('../../controllers/time_clock/active_entries.php', function(result) {
@@ -203,20 +208,14 @@ $(document).ready(function() {
             }
             else
             {
-                $('#clock-out').css('display', 'none');
-                $('#current-project').css('display', 'none');
-                $('#clock-in').css('display', 'block');                
+                window.location.reload();
+//                $('#clock-out').css('display', 'none');
+//                $('#current-project').css('display', 'none');
+//                $('#clock-in').css('display', 'block');                
+//                clearInterval(timerID);
             }
-
         });
     });
-    
-    /*
-    *   Retrieves clients and projects for whom work has been done
-    *   List accordian panels to view
-    */
-    
-    $.post("../controllers/")
     
 /****************************************************************************************/
 /************                Client and Project functions                    ************/   
@@ -271,24 +270,66 @@ $(document).ready(function() {
         $(".active", event.delegateTarget).removeClass("active");
         $(this).addClass("active");
         var client_id = $(this).attr('value');
-        $.post("../../controllers/clients_projects/project_client.php", 
-               {action:'choose-client', client_id:client_id}, 
-               function(result) {
+        
+        if($('header h1').html() == "Clients and Projects")
+        {
+            $.post("../../controllers/clients_projects/project_client.php", 
+            {action:'choose-client', client_id:client_id}, 
+            function(result) {
                 $('#project-list .list-group-item').remove();
                 var info = result.split('/');
                 var names = info[1].split(',');
                 names.splice(-1,1);
-        
+
                 for(var i = 0; i < names.length; i++)
-                    {
-                        $('#project-list').append($(
-                            "<div class='list-group-item'>" + 
-                            names[i] +
-                            '</a>')
-                        );
-                    }            
+                {
+                    $('#project-list').append($(
+                        "<div class='list-group-item'>" + 
+                        names[i] +
+                        '</a>')
+                    );
+                }            
                 $('#project-sort div').removeClass('active')
+            });   
+        }
+        else if ($('header h1').html() == "Billing")
+        {
+            console.log($(this).attr('value'));
+            var client_id = $(this).attr('value');
+            $("#time-report").load("../../controllers/billing/invoice_entries.php", { client_id : client_id });
+        }
+    });
+    
+    // Shows which sort-tab is currently active, and changes on click
+    $(".sort-tabs").on("click", "div:not(.active)", "", function (event) {
+        $(".active", event.delegateTarget).removeClass("active");
+        $(this).addClass("active");
+        $.post('../../controllers/clients_projects/project_client.php', 
+               {action:'load', data:'projects'}, 
+               function(result) {
+           
+            $('#project-list .list-group-item').remove();
+            var allResults = result.split('/');
+            var values = allResults[0].split(',');
+            var names = allResults[1].split(',');
+            names.splice(-1,1);
+            values.splice(-1,1);
+            
+            for(var i = 0; i < values.length; i++)
+            {
+                $('#project-list').append($(
+                    "<a class='list-group-item' value='"+values[i]+"'>" + 
+                    names[i] +
+                    '</a>')
+                );
+            }
+            $('#client-list .list-group-item').removeClass('active')
         });
     });
+
+/****************************************************************************************/
+/************                      Billing functions                         ************/   
+/****************************************************************************************/  
+
     
 });

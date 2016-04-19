@@ -91,26 +91,38 @@
 
     }
 
-    function new_project($title = NULL, $description = NULL, $pay_rate = NULL)
+    function new_project($title = NULL, $description = NULL, $pay_rate = NULL, $recurring, $interval)
     {
-        if ($title == NULL || $description == NULL || $pay_rate = NULL)
+        if ($title == NULL || $pay_rate == NULL)
         {
-            throw new Exception("Project missing information! Title: {$title}; Description: {$description}; Pay: {$pay_rate}");
+            throw new Exception("Project missing information! Title: {$title}; Pay: {$pay_rate}");
         }
         
         global $db;
         
+        if($recurring == 'on')
+        {
+            $recurring = 1;
+        }
+        else
+        {
+            $recurring = 0;
+            $interval = 0;
+        }
+        
         try {
             $query = "INSERT INTO projects
-                        (name, description, pay_rate, user_id)
+                        (name, description, pay_rate, user_id, recurring, interval_id)
                         VALUES
-                        (:title, :description, :pay_rate, :user_id)";
+                        (:title, :description, :pay_rate, :user_id, :recurring, :interval)";
             $result = $db->prepare($query);
             $result->execute(
                 array(
                     "title" => $title,
                     "description" => $description,
                     "pay_rate" => $pay_rate,
+                    "recurring" => $recurring,
+                    "interval" => $interval,
                     "user_id" => $_SESSION['user_id']
                 )
             );
