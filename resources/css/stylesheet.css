@@ -9,7 +9,11 @@ header {
     font-family: fantasy, sans-serif;
     margin-bottom: 5%;
 }
-
+.footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
 .sub {
     position: relative;
     width: 100%;
@@ -219,6 +223,7 @@ textarea {
     float: right;
     margin: 0 5px;
     width: 110px;
+    display: none;
 }
 
 #time-report {

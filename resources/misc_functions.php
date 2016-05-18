@@ -11,6 +11,10 @@ setlocale(LC_MONETARY, 'en_US');
     function time_to_decimal($time) 
     {
         $timeArr = explode(':', $time);
+        if ($timeArr[2] >= 30)
+        {
+            $timeArr[1]++;
+        }
         $decTime = ($timeArr[0]) + ($timeArr[1]/60);
  
         return $decTime;

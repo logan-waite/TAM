@@ -1,5 +1,8 @@
 
-        <div class='footer'>
+        <div class='footer text-center'>
+            <?php
+                echo "&copy; ".date("Y")." Logan Waite. All rights reserved";
+            ?>
         </div>
 <script>
     $(document).ready(function() {

@@ -270,6 +270,7 @@ $(document).ready(function() {
         $(".active", event.delegateTarget).removeClass("active");
         $(this).addClass("active");
         var client_id = $(this).attr('value');
+        console.log($('header h1').html());
         
         if($('header h1').html() == "Clients and Projects")
         {
@@ -294,9 +295,10 @@ $(document).ready(function() {
         }
         else if ($('header h1').html() == "Billing")
         {
-            console.log($(this).attr('value'));
             var client_id = $(this).attr('value');
+            //$("#client-list").hide('slide', {direction:'left'},1000);
             $("#time-report").load("../../controllers/billing/invoice_entries.php", { client_id : client_id });
+            $('#b-tools').css('display', 'block');
         }
     });
     
@@ -329,7 +331,23 @@ $(document).ready(function() {
 
 /****************************************************************************************/
 /************                      Billing functions                         ************/   
-/****************************************************************************************/  
-
+/****************************************************************************************/ 
     
+    // Billing Tool Buttons
+    $(".tool-btn").on("click", function(event) {
+        console.log($(this).html());
+        if ( $(this).html() == "Create Invoice" )
+        {
+            var client_id = $("#client-list .active").attr('value');
+            console.log(client_id)
+            $.post("../../controllers/billing/invoice_entries.php",
+                  {action:'create', client_id:client_id});
+        }
+            $(this).removeClass('btn-success').addClass('btn-danger').html('Delete Invoice');
+            $('.tool-btn').each(function(){
+                $(this).removeClass('disabled');
+            });
+    })
+
+
 });

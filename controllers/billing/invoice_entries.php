@@ -20,9 +20,9 @@
 </header>
 <div class="list-group">
     <?php if ($has_entries): ?>
-        <?php foreach($invoice["projects"] as $key => $value):?>
+        <?php foreach($invoice["projects"] as $project_name => $time):?>
             <div class="list-group-item report-item">
-                <?php echo $key . " -- " . $value . " -- $" . $invoice['pay'][$key]; ?>
+                <?php echo $project_name . " -- " . $time . " -- $" . $invoice['pay'][$project_name]; ?>
             </div>
         <?php endforeach; ?>
         <div class="list-group-item list-group-item-info" id='pay-total'>

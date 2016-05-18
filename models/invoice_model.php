@@ -122,19 +122,19 @@
         $result = $db->prepare($query);
         
         $total_pay = 0.00;
-        foreach($projects as $key => $value)
+        foreach($projects as $project_name => $time)
         {
             $result->execute(
                 array(
-                    "project_name" => $key,
+                    "project_name" => $project_name,
                     "client_id" => $client_id
                 )
             );
             $pay_rate = ($result->fetch())['pay_rate'];
-            $value = number_format(time_to_decimal($value), 2);
-            $pay = $value * $pay_rate;
+            $time = number_format(time_to_decimal($time), 2);
+            $pay = $time * $pay_rate;
             $total_pay += $pay;
-            $project_pay[$key] = money_format('%!i', $pay);
+            $project_pay[$project_name] = money_format('%!i', $pay);
             
         }
         $data['pay'] = $project_pay;
